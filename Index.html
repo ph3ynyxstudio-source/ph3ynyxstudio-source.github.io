@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ph3yNyx.Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/three@0.167.1/build/three.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg-black: #020304;
+        --bg-deep: #071014;
+        --glass: rgba(8, 12, 16, 0.72);
+        --line-soft: rgba(129, 232, 255, 0.2);
+        --cyan: #89ecff;
+        --violet: #a78bfa;
+      }
+
+      body {
+        font-family: "Manrope", sans-serif;
+        background:
+          radial-gradient(
+            circle at top,
+            rgba(103, 232, 249, 0.22),
+            transparent 34%
+          ),
+          linear-gradient(180deg, #0b1116 0%, #070b10 45%, #040608 100%);
+      }
+
+      /* Dark architectural surface — felt more than seen */
+
+      .hero {
+        position: relative;
+        min-height: 100dvh;
+        height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #05070b;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background-image: url("heromur.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: brightness(0.42) saturate(0.95);
+        transform: scale(1.03);
+      }
+
+      .hero-bg::after {
+        content: "";
+        position: absolute;
+        left: -2%;
+        right: -2%;
+        bottom: -30px;
+        height: 220px;
+        background-image: url("heromur.jpg");
+        background-size: cover;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        filter: blur(18px) brightness(0.42) saturate(0.95);
+        opacity: 0.9;
+        transform: scale(1.08);
+        mask-image: linear-gradient(
+          to bottom,
+          transparent 0%,
+          rgba(0, 0, 0, 0.18) 20%,
+          rgba(0, 0, 0, 0.7) 58%,
+          black 100%
+        );
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          transparent 0%,
+          rgba(0, 0, 0, 0.18) 20%,
+          rgba(0, 0, 0, 0.7) 58%,
+          black 100%
+        );
+      }
+
+      .hero-core {
+        position: relative;
+        z-index: 2;
+        width: min(92vw, 54rem);
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 1rem;
+        box-sizing: border-box;
+      }
+
+      .hero-copy {
+        width: 100%;
+        max-width: center;
+        margin: 0 auto;
+        text-align: center;
+        transform: translateY(1rem);
+      }
+
+      .hero-title {
+        margin: 0;
+        font-size: clamp(2rem, 6vw, 4.8rem);
+        line-height: 1.05;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.95);
+        word-break: normal;
+        overflow-wrap: normal;
+      }
+      .hero-subtitle {
+        margin-top: 0.9rem;
+        font-size: clamp(0.72rem, 2.5vw, 0.95rem);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.52);
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 110px;
+        pointer-events: none;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.865) 1%,
+          rgba(5, 7, 11, 0) 9%,
+          rgba(2, 3, 4, 0.12) 45%,
+          rgba(2, 3, 4, 0.32) 75%,
+          rgba(2, 3, 4, 0.58) 100%
+        );
+        z-index: 2;
+      }
+      .hero-band {
+        position: relative;
+        z-index: 20;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 1rem 1.25rem;
+        background: rgba(18, 26, 34, 0.62);
+        border-top: 1px solid rgba(19, 146, 157, 0.568);
+        border-bottom: 1px solid rgba(137, 235, 255, 0.368);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .hero-band a {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.62);
+        text-decoration: none;
+        transition:
+          color 0.25s ease,
+          opacity 0.25s ease;
+      }
+
+      .hero-band a:hover {
+        color: rgba(137, 236, 255, 0.95);
+      }
+
+      /* Shared vertical rule for spatial depth */
+
+      .arch-rule-v {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(137, 236, 255, 0.1) 20%,
+          rgba(137, 236, 255, 0.1) 50%,
+          rgba(137, 236, 255, 0.1) 80%,
+          transparent 100%
+        );
+        opacity: 0.9;
+        pointer-events: none;
+      }
+
+      .arch-rule-v.violet {
+        background: linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(167, 139, 250, 0.1) 20%,
+          rgba(167, 139, 250, 0.1) 50%,
+          rgba(167, 139, 250, 0.1) 80%,
+          transparent 10%
+        );
+        opacity: 0.9;
+        pointer-events: none;
+      }
+
+      /* Horizontal section separator */
+      .arch-sep {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.04) 30%,
+          rgba(255, 255, 255, 0.04) 70%,
+          transparent
+        );
+      }
+
+      /* Section label */
+      .section-label {
+        font-size: 0.625rem;
+        text-transform: uppercase;
+        letter-spacing: 0.55em;
+        color: rgba(227, 191, 109, 0.539);
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      /* ─── Arch rule positioning ────────────────────────────── */
+      .arch-rule-left-12 {
+        left: 3rem;
+      }
+      .arch-rule-left-6 {
+        left: 1.5rem;
+      }
+      .arch-rule-right-12 {
+        right: 2rem;
+      }
+
+      /* ─── Ghost letterform — Identité ──────────────────────── */
+      .ghost-letter {
+        font-family: "Space Grotesk", sans-serif;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(137, 236, 255, 0.04);
+        line-height: 0.8;
+      }
+      /* ─── Fluid headings (clamp) ────────────────────────────── */
+      .heading-who {
+        font-size: clamp(3.5rem, 9vw, 7rem);
+      }
+
+      .title-glow-cyan {
+        position: relative;
+        display: inline-block;
+        z-index: 1;
+      }
+
+      .title-glow-cyan::before {
+        content: "";
+        position: absolute;
+        top: 30%;
+        left: 4%;
+        transform: translate(-50%, -50%);
+        width: 114%;
+        height: 75%;
+        background: radial-gradient(
+          ellipse,
+          rgba(210, 225, 235, 0.1) 0%,
+          rgba(150, 190, 205, 0.08) 28%,
+          rgba(95, 135, 150, 0.511) 52%,
+          rgba(55, 85, 95, 0.05) 70%,
+          transparent 90%
+        );
+        filter: blur(28px);
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .heading-lunar {
+        font-size: clamp(4rem, 10vw, 8.5rem);
+      }
+
+      .heading-vision {
+        font-size: clamp(3rem, 7.5vw, 6.5rem);
+      }
+
+      .heading-contact {
+        font-size: clamp(3rem, 8vw, 7rem);
+        line-height: 0.9;
+      }
+
+      /* ─── Body text ─────────────────────────────────────────── */
+      .who-body {
+        font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+        border-left: 1px solid rgba(137, 236, 255, 0.1);
+        padding-left: 2rem;
+      }
+
+      .body-fluid-sm {
+        font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+      }
+
+      .accent-violet {
+        color: rgba(167, 139, 250, 0.75);
+      }
+
+      /* ─── Vision section ─────────────────────────────────────── */
+      .vision-ambient {
+        background: radial-gradient(
+          ellipse 60% 50% at 80% 40%,
+          rgba(0, 179, 188, 0.139) 10%,
+          transparent 90%
+        );
+      }
+
+      .vision-body-right {
+        font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+        max-width: 30rem;
+        margin-left: clamp(0rem, 18%, 14rem);
+        border-left: 1px solid rgba(137, 236, 255, 0.08);
+        padding-left: 1.75rem;
+      }
+
+      .vision-body-left {
+        font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+        max-width: 30rem;
+        border-left: 1px solid rgba(167, 139, 250, 0.08);
+        padding-left: 1.75rem;
+      }
+
+      /* ─── Contact section ────────────────────────────────────── */
+      .contact-floor {
+        background: linear-gradient(
+          0deg,
+          rgba(53, 6, 83, 0.322) 20%,
+          transparent 100%
+        );
+      }
+
+      .contact-line-down {
+        height: 6rem;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba(115, 11, 171, 0.607),
+          transparent
+        );
+      }
+
+      .contact-line-up {
+        height: 4rem;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba(11, 148, 165, 0.491),
+          transparent
+        );
+      }
+
+      .contact-email {
+        font-size: 0.875rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+      }
+
+      .hero-cube-layer::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 420px;
+        height: 420px;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(
+          circle,
+          rgba(137, 236, 255, 0.22) 0%,
+          rgba(137, 236, 255, 0.12) 22%,
+          rgba(137, 236, 255, 0.05) 42%,
+          transparent 60%
+        );
+        filter: blur(28px);
+        z-index: 0;
+        pointer-events: none;
+      }
+      .hero-cube-layer {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        pointer-events: none;
+        opacity: 0.58;
+        perspective: 1400px;
+      }
+
+      .hero-core {
+        position: relative;
+        z-index: 3;
+      }
+
+      .cube-wrapper {
+        width: 150px;
+        height: 150px;
+        position: relative;
+        transform-style: preserve-3d;
+      }
+
+      .cube-wrapper::before {
+        content: "";
+        position: absolute;
+        inset: -46px;
+        background: radial-gradient(
+          circle,
+          rgba(137, 236, 255, 0.18) 0%,
+          rgba(137, 236, 255, 0.08) 42%,
+          transparent 68%
+        );
+        filter: blur(26px);
+        z-index: -1;
+      }
+
+      .cube-basic {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: spinCube 5.5s linear infinite;
+        will-change: transform;
+      }
+
+      .face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background:
+          linear-gradient(135deg, rgba(100, 249, 249, 0.5), #8b03e65e),
+          rgba(3, 7, 10, 0.16);
+        border: 2px solid rgba(100, 99, 7, 0.9);
+        box-shadow:
+          0 0 10px rgba(198, 241, 250, 0.683),
+          0 0 24px rgba(0, 0, 0, 0.703),
+          inset 0 0 18px rgba(137, 236, 255, 0.03);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      .f-front {
+        transform: translateZ(75px);
+      }
+      .f-back {
+        transform: rotateY(180deg) translateZ(75px);
+      }
+      .f-right {
+        transform: rotateY(90deg) translateZ(75px);
+      }
+      .f-left {
+        transform: rotateY(-90deg) translateZ(75px);
+      }
+      .f-top {
+        transform: rotateX(90deg) translateZ(75px);
+      }
+      .f-bottom {
+        transform: rotateX(-90deg) translateZ(75px);
+      }
+      @keyframes spinCube {
+        0% {
+          transform: rotateX(-10deg) rotateY(0deg);
+        }
+
+        100% {
+          transform: rotateX(-10deg) rotateY(-360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section id="hero" class="hero">
+      <div class="hero-bg"></div>
+
+      <div class="hero-cube-layer">
+        <div class="cube-wrapper">
+          <div class="cube-basic">
+            <div class="face f-front"></div>
+            <div class="face f-back"></div>
+            <div class="face f-left"></div>
+            <div class="face f-right"></div>
+            <div class="face f-top"></div>
+            <div class="face f-bottom"></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-core">
+        <div class="hero-copy">
+          <h1 class="title hero-title">PH3YNYX.STUDIO</h1>
+          <p class="hero-subtitle">Digital sanctuary</p>
+        </div>
+      </div>
+    </section>
+    <nav class="hero-band">
+      <a href="#who">À propos</a>
+      <a href="#building">Projet</a>
+      <a href="#vision">Vision</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════
+         IDENTITÉ — Qui je suis
+    ═══════════════════════════════════════════════ -->
+    <section
+      id="who"
+      class="min-h-screen flex items-end py-40 px-12 md:px-24 lg:px-40 relative overflow-hidden"
+    >
+      <!-- Atmospheric depth -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-black via-[#020508] to-black/80 pointer-events-none"
+      ></div>
+
+      <!-- Vertical rule — left edge -->
+      <div class="arch-rule-v arch-rule-left-12"></div>
+
+      <!-- Large background letterform — architectural ghost -->
+      <div
+        aria-hidden="true"
+        class="ghost-letter absolute right-0 bottom-0 text-[28vw] font-black select-none pointer-events-none overflow-hidden"
+      >
+        B.
+      </div>
+
+      <div class="relative z-10 max-w-3xl">
+        <span class="section-label block mb-10">Identité</span>
+
+        <h2
+          class="title title-glow-cyan font-black text-white/90 leading-[0.98] mb-14 tracking-tight text-[1.95rem] sm:text-6xl lg:text-7xl"
+        >
+          Builder.<br />Orchestrateur.
+        </h2>
+
+        <div class="who-body space-y-6 text-white/50 leading-loose">
+          <p>
+            Je ne suis pas un développeur traditionnel. Je construis des univers
+            numériques calmes et structurés —
+            <span class="accent-violet"
+              >outils, systèmes, idées, IA, direction produit, atmosphère.</span
+            >
+          </p>
+          <p>Ph3yNyx.Studio marque le début de quelque chose de sérieux.</p>
+        </div>
+      </div>
+    </section>
+    <section
+      id="building"
+      class="min-h-screen flex items-center py-20 px-6 md:px-16 lg:px-24 relative overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-black/80 via-[#020406] to-black pointer-events-none"
+      ></div>
+
+      <div class="arch-rule-v violet arch-rule-right-12"></div>
+
+      <div class="relative z-10 w-full max-w-6xl mx-auto">
+        <div class="arch-sep mb-12 md:mb-20"></div>
+
+        <div
+          class="flex flex-col gap-12 md:gap-16 lg:flex-row lg:gap-24 items-start"
+        >
+          <div class="w-full lg:w-auto lg:flex-shrink-0">
+            <span class="section-label violet block mb-6 md:mb-10">
+              Projet en cours
+            </span>
+
+            <h2
+              class="title heading-lunar font-black text-white/85 leading-[0.9] tracking-tight mb-5 md:mb-8"
+            >
+              Lunar<br />Mood
+            </h2>
+
+            <p
+              class="text-white/35 text-xs md:text-sm tracking-[0.3em] uppercase mb-6 md:mb-10"
+            >
+              Bêta · En évolution
+            </p>
+
+            <p class="body-fluid-sm text-white/50 leading-relaxed max-w-md">
+              Un calendrier d’émotions, d’énergie et de consommation
+              personnelle, synchronisé avec les phases lunaires.
+            </p>
+          </div>
+
+          <div class="w-full pr-8 lg:flex-1 lg:pt-10">
+            <div
+              class="border-t border-white/[0.06] py-4 flex items-center justify-between gap-4"
+            >
+              <span
+                class="text-white/35 text-[11px] md:text-xs tracking-[0.28em] uppercase"
+              >
+                Suivi émotionnel
+              </span>
+              <span class="text-white/50 text-[11px] md:text-xs tracking-wide">
+                3×/jour
+              </span>
+            </div>
+
+            <div
+              class="border-t border-white/[0.06] py-4 flex items-center justify-between gap-4"
+            >
+              <span
+                class="text-white/35 text-[11px] md:text-xs tracking-[0.28em] uppercase"
+              >
+                Phases lunaires
+              </span>
+              <span class="text-white/50 text-[11px] md:text-xs tracking-wide">
+                Intégrées
+              </span>
+            </div>
+
+            <div
+              class="border-t border-white/[0.06] py-4 flex items-center justify-between gap-4"
+            >
+              <span
+                class="text-white/35 text-[11px] md:text-xs tracking-[0.28em] uppercase"
+              >
+                Stats détaillées
+              </span>
+              <span class="text-white/50 text-[11px] md:text-xs tracking-wide">
+                Actif
+              </span>
+            </div>
+
+            <div
+              class="border-t border-white/[0.06] py-4 flex items-center justify-between gap-4"
+            >
+              <span
+                class="text-white/35 text-[11px] md:text-xs tracking-[0.28em] uppercase"
+              >
+                Déploiement
+              </span>
+              <span class="text-white/50 text-[11px] md:text-xs tracking-wide">
+                Vercel · MVP
+              </span>
+            </div>
+
+            <div
+              class="border-t border-b border-white/[0.06] py-4 flex items-center justify-between gap-4"
+            >
+              <span
+                class="text-violet-400/45 text-[11px] md:text-xs tracking-[0.28em] uppercase"
+              >
+                Crystaph3y
+              </span>
+              <span
+                class="text-violet-400/30 text-[11px] md:text-xs tracking-wide"
+              >
+                Chatbot · En cours
+              </span>
+            </div>
+
+            <p
+              class="mt-6 text-white/22 text-[11px] md:text-xs tracking-[0.32em] uppercase"
+            >
+              Pas de lien public pour le moment
+            </p>
+          </div>
+        </div>
+
+        <div class="arch-sep mt-12 md:mt-20"></div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════
+         VISION — Structure & silence
+    ═══════════════════════════════════════════════ -->
+    <section
+      id="vision"
+      class="min-h-screen flex items-center py-40 px-12 md:px-24 relative overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-black via-[#030507] to-black pointer-events-none"
+      ></div>
+
+      <!-- Vertical rule — far left -->
+      <div class="arch-rule-v arch-rule-left-6"></div>
+
+      <!-- Ambient light plane -->
+      <div
+        aria-hidden="true"
+        class="vision-ambient absolute inset-0 pointer-events-none"
+      ></div>
+
+      <div class="relative z-10 max-w-5xl mx-auto w-full space-y-20">
+        <span class="section-label block">Vision</span>
+
+        <!-- Line 1 — large, anchored left -->
+        <p
+          class="title heading-vision font-black text-white/82 leading-[0.9] tracking-tight"
+        >
+          Structure<br />&amp; Silence.
+        </p>
+
+        <!-- Line 2 — body, offset right -->
+        <p class="vision-body-right text-white/42 leading-loose">
+          Les cubes représentent l’ordre dans le vide. L’orbite rappelle un
+          mouvement continu, contrôlé. Pas de chaos, seulement de la profondeur
+          et du calme.
+        </p>
+
+        <!-- Line 3 — large, anchored right -->
+        <p
+          class="title heading-vision font-black text-white/55 leading-[0.9] tracking-tight text-right"
+        >
+          Futurisme<br />Calme.
+        </p>
+
+        <!-- Line 4 — body, anchored left again -->
+        <p class="vision-body-left text-white/38 leading-loose">
+          Le début d'un univers plus large que LunarMood. Outils, IA, systèmes
+          interconnectés par une esthétique cohérente — immersif sans être
+          agressif.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         CONTACT — Threshold
+    ═══════════════════════════════════════════════ -->
+    <section
+      id="contact"
+      class="min-h-screen flex items-center justify-center py-40 px-8 relative overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black via-[#020405] to-black/70 pointer-events-none"
+      ></div>
+
+      <!-- Floor grounding gradient -->
+      <div
+        aria-hidden="true"
+        class="contact-floor absolute bottom-0 inset-x-0 h-64 pointer-events-none"
+      ></div>
+
+      <div class="relative z-10 text-center">
+        <span class="section-label block mb-16">Contact</span>
+
+        <!-- Descent line -->
+        <div
+          class="contact-line-down w-px mx-auto mb-16"
+          aria-hidden="true"
+        ></div>
+
+        <h2
+          class="title heading-contact font-black text-white/80 tracking-tight mb-16"
+        >
+          Prenons<br />contact
+        </h2>
+
+        <!-- Ascent line -->
+        <div
+          class="contact-line-up w-px mx-auto mb-14"
+          aria-hidden="true"
+        ></div>
+
+        <a
+          href="mailto:pheynyx@studio.com"
+          class="contact-email block text-white/45 hover:text-white/88 transition-colors duration-700"
+        >
+          pheynyx@studio.com
+        </a>
+      </div>
+    </section>
+
+    <!-- Brickwall JS -->
+    <script>
+      document.querySelectorAll(".brickwall").forEach((panel) => {
+        const cols = 10;
+        const rows = 14;
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const brick = document.createElement("div");
+            brick.className = "brick";
+
+            brick.style.animationDelay = `${Math.random() * 2}s`;
+            brick.style.animationDuration = `${2 + Math.random() * 2}s`;
+
+            panel.appendChild(brick);
+          }
+        }
+      });
+    </script>
+
+    <!-- Smooth scroll -->
+    <script>
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document
+            .querySelector(this.getAttribute("href"))
+            .scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    </script>
+  </body>
+</html>
