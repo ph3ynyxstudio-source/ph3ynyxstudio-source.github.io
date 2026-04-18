@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ph3yNyx.Studio</title>
+    <meta
+      name="description"
+      content="PH3YNYX.STUDIO — sanctuaire numérique personnel, structure futuriste calme, produit et création."
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/three@0.167.1/build/three.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,6 +28,7 @@
 
       body {
         font-family: "Manrope", sans-serif;
+        overflow-x: hidden;
         background:
           radial-gradient(
             circle at top,
@@ -32,14 +36,15 @@
             transparent 34%
           ),
           linear-gradient(180deg, #0b1116 0%, #070b10 45%, #040608 100%);
+        color: rgba(255, 255, 255, 0.84);
       }
 
       /* Dark architectural surface — felt more than seen */
 
       .hero {
         position: relative;
+        min-height: 100svh;
         min-height: 100dvh;
-        height: 100dvh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -91,39 +96,87 @@
       .hero-core {
         position: relative;
         z-index: 2;
-        width: min(92vw, 54rem);
+        width: min(92vw, 64rem);
         height: 100%;
         margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0 1rem;
+        padding: clamp(1rem, 2vw, 2rem);
         box-sizing: border-box;
       }
 
       .hero-copy {
         width: 100%;
-        max-width: center;
+        max-width: 44rem;
         margin: 0 auto;
         text-align: center;
-        transform: translateY(1rem);
+        transform: translateY(clamp(0.1rem, 1.2vw, 0.8rem));
+      }
+
+      .hero-eyebrow {
+        margin: 0 0 0.8rem;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(0.65rem, 1.9vw, 0.85rem);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(196, 236, 248, 0.5);
       }
 
       .hero-title {
         margin: 0;
-        font-size: clamp(2rem, 6vw, 4.8rem);
-        line-height: 1.05;
-        letter-spacing: 0.08em;
+        font-size: clamp(1.95rem, 6.8vw, 5.2rem);
+        line-height: 1.02;
+        letter-spacing: clamp(0.03em, 0.7vw, 0.1em);
         color: rgba(255, 255, 255, 0.95);
         word-break: normal;
-        overflow-wrap: normal;
+        overflow-wrap: anywhere;
       }
       .hero-subtitle {
-        margin-top: 0.9rem;
-        font-size: clamp(0.72rem, 2.5vw, 0.95rem);
-        letter-spacing: 0.16em;
+        margin: 1rem auto 0;
+        max-width: 35rem;
+        font-size: clamp(0.94rem, 2vw, 1.16rem);
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .hero-subtitle-quiet {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: clamp(0.72rem, 1.7vw, 0.88rem);
+        letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.52);
+        color: rgba(169, 222, 238, 0.4);
+      }
+
+      .hero-cta-row {
+        margin-top: 1.3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+
+      .hero-cta {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.76rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 0.8rem 1rem;
+        border-radius: 999px;
+        border: 1px solid rgba(137, 236, 255, 0.35);
+        color: rgba(233, 248, 252, 0.86);
+        background: rgba(12, 25, 32, 0.5);
+        backdrop-filter: blur(4px);
+        transition: all 0.2s ease;
+      }
+
+      .hero-cta:hover {
+        color: #ffffff;
+        border-color: rgba(137, 236, 255, 0.66);
+        background: rgba(20, 37, 47, 0.72);
       }
 
       .hero::after {
@@ -150,8 +203,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 2rem;
-        padding: 1rem 1.25rem;
+        flex-wrap: wrap;
+        gap: 0.7rem 1rem;
+        padding: 0.75rem 1rem;
         background: rgba(18, 26, 34, 0.62);
         border-top: 1px solid rgba(19, 146, 157, 0.568);
         border-bottom: 1px solid rgba(137, 235, 255, 0.368);
@@ -161,8 +215,8 @@
 
       .hero-band a {
         font-family: "Space Grotesk", sans-serif;
-        font-size: 0.72rem;
-        letter-spacing: 0.22em;
+        font-size: clamp(0.64rem, 2vw, 0.74rem);
+        letter-spacing: 0.2em;
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.62);
         text-decoration: none;
@@ -173,6 +227,12 @@
 
       .hero-band a:hover {
         color: rgba(137, 236, 255, 0.95);
+      }
+
+      .hero-band a:focus-visible,
+      .hero-cta:focus-visible {
+        outline: 2px solid rgba(137, 236, 255, 0.8);
+        outline-offset: 3px;
       }
 
       /* Shared vertical rule for spatial depth */
@@ -280,15 +340,15 @@
       }
 
       .heading-lunar {
-        font-size: clamp(4rem, 10vw, 8.5rem);
+        font-size: clamp(3.1rem, 8.8vw, 7rem);
       }
 
       .heading-vision {
-        font-size: clamp(3rem, 7.5vw, 6.5rem);
+        font-size: clamp(2.7rem, 6.7vw, 5.4rem);
       }
 
       .heading-contact {
-        font-size: clamp(3rem, 8vw, 7rem);
+        font-size: clamp(2.6rem, 7vw, 5.6rem);
         line-height: 0.9;
       }
 
@@ -393,7 +453,7 @@
         justify-content: center;
         z-index: 2;
         pointer-events: none;
-        opacity: 0.58;
+        opacity: 0.72;
         perspective: 1400px;
       }
 
@@ -403,10 +463,11 @@
       }
 
       .cube-wrapper {
-        width: 150px;
-        height: 150px;
+        width: clamp(106px, 21vw, 150px);
+        height: clamp(106px, 21vw, 150px);
         position: relative;
         transform-style: preserve-3d;
+        transform: rotateX(-14deg) rotateY(18deg);
       }
 
       .cube-wrapper::before {
@@ -428,7 +489,7 @@
         height: 100%;
         position: relative;
         transform-style: preserve-3d;
-        animation: spinCube 5.5s linear infinite;
+        animation: spinCube 7.2s linear infinite;
         will-change: transform;
       }
 
@@ -436,43 +497,74 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background:
-          linear-gradient(135deg, rgba(100, 249, 249, 0.5), #8b03e65e),
-          rgba(3, 7, 10, 0.16);
-        border: 2px solid rgba(100, 99, 7, 0.9);
+        background: linear-gradient(
+          150deg,
+          rgba(125, 252, 255, 0.46),
+          rgba(71, 35, 117, 0.3)
+        );
+        border: 1px solid rgba(145, 236, 255, 0.72);
         box-shadow:
           0 0 10px rgba(198, 241, 250, 0.683),
           0 0 24px rgba(0, 0, 0, 0.703),
-          inset 0 0 18px rgba(137, 236, 255, 0.03);
+          inset 0 0 16px rgba(137, 236, 255, 0.11);
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
       }
 
       .f-front {
-        transform: translateZ(75px);
+        transform: translateZ(calc(clamp(106px, 21vw, 150px) / 2));
       }
       .f-back {
-        transform: rotateY(180deg) translateZ(75px);
+        transform: rotateY(180deg) translateZ(calc(clamp(106px, 21vw, 150px) / 2));
       }
       .f-right {
-        transform: rotateY(90deg) translateZ(75px);
+        transform: rotateY(90deg) translateZ(calc(clamp(106px, 21vw, 150px) / 2));
       }
       .f-left {
-        transform: rotateY(-90deg) translateZ(75px);
+        transform: rotateY(-90deg) translateZ(calc(clamp(106px, 21vw, 150px) / 2));
       }
       .f-top {
-        transform: rotateX(90deg) translateZ(75px);
+        transform: rotateX(90deg) translateZ(calc(clamp(106px, 21vw, 150px) / 2));
       }
       .f-bottom {
-        transform: rotateX(-90deg) translateZ(75px);
+        transform: rotateX(-90deg) translateZ(calc(clamp(106px, 21vw, 150px) / 2));
       }
       @keyframes spinCube {
         0% {
-          transform: rotateX(-10deg) rotateY(0deg);
+          transform: rotateX(0deg) rotateY(0deg);
         }
-
+        50% {
+          transform: rotateX(360deg) rotateY(180deg);
+        }
         100% {
-          transform: rotateX(-10deg) rotateY(-360deg);
+          transform: rotateX(720deg) rotateY(360deg);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-cube-layer {
+          opacity: 0.42;
+        }
+        .hero-cube-layer::before {
+          width: 300px;
+          height: 300px;
+          filter: blur(22px);
+        }
+        .hero-cta-row {
+          display: none;
+        }
+        .who-body,
+        .vision-body-left,
+        .vision-body-right {
+          border-left: 0;
+          padding-left: 0;
+          margin-left: 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .cube-basic {
+          animation: none;
         }
       }
     </style>
@@ -495,12 +587,22 @@
       </div>
       <div class="hero-core">
         <div class="hero-copy">
+          <p class="hero-eyebrow">Sanctuaire numérique personnel</p>
           <h1 class="title hero-title">PH3YNYX.STUDIO</h1>
-          <p class="hero-subtitle">Digital sanctuary</p>
+          <p class="hero-subtitle">
+            Je construis des produits numériques calmes, où la structure guide
+            la vision.
+            <span class="hero-subtitle-quiet"
+              >Builder · Direction produit · Sanctuaire numérique</span
+            >
+          </p>
+          <div class="hero-cta-row">
+            <a class="hero-cta" href="#building">Voir le projet en cours</a>
+          </div>
         </div>
       </div>
     </section>
-    <nav class="hero-band">
+    <nav class="hero-band" aria-label="Navigation principale">
       <a href="#who">À propos</a>
       <a href="#building">Projet</a>
       <a href="#vision">Vision</a>
@@ -512,7 +614,7 @@
     ═══════════════════════════════════════════════ -->
     <section
       id="who"
-      class="min-h-screen flex items-end py-40 px-12 md:px-24 lg:px-40 relative overflow-hidden"
+      class="min-h-[78svh] flex items-end py-16 md:py-20 lg:py-24 px-6 md:px-14 lg:px-24 relative overflow-hidden"
     >
       <!-- Atmospheric depth -->
       <div
@@ -531,15 +633,15 @@
       </div>
 
       <div class="relative z-10 max-w-3xl">
-        <span class="section-label block mb-10">Identité</span>
+        <span class="section-label block mb-7">Identité</span>
 
         <h2
-          class="title title-glow-cyan font-black text-white/90 leading-[0.98] mb-14 tracking-tight text-[1.95rem] sm:text-6xl lg:text-7xl"
+          class="title title-glow-cyan font-black text-white/90 leading-[0.98] mb-8 tracking-tight text-[1.95rem] sm:text-6xl lg:text-7xl"
         >
           Builder.<br />Orchestrateur.
         </h2>
 
-        <div class="who-body space-y-6 text-white/50 leading-loose">
+        <div class="who-body space-y-4 text-white/50 leading-relaxed">
           <p>
             Je ne suis pas un développeur traditionnel. Je construis des univers
             numériques calmes et structurés —
@@ -547,13 +649,16 @@
               >outils, systèmes, idées, IA, direction produit, atmosphère.</span
             >
           </p>
-          <p>Ph3yNyx.Studio marque le début de quelque chose de sérieux.</p>
+          <p>
+            PH3YNYX.STUDIO est mon espace de construction : un sanctuaire où la
+            vision produit devient expérience concrète.
+          </p>
         </div>
       </div>
     </section>
     <section
       id="building"
-      class="min-h-screen flex items-center py-20 px-6 md:px-16 lg:px-24 relative overflow-hidden"
+      class="min-h-[78svh] flex items-center py-14 md:py-16 px-6 md:px-12 lg:px-20 relative overflow-hidden"
     >
       <div
         class="absolute inset-0 bg-gradient-to-b from-black/80 via-[#020406] to-black pointer-events-none"
@@ -562,37 +667,37 @@
       <div class="arch-rule-v violet arch-rule-right-12"></div>
 
       <div class="relative z-10 w-full max-w-6xl mx-auto">
-        <div class="arch-sep mb-12 md:mb-20"></div>
+        <div class="arch-sep mb-8 md:mb-12"></div>
 
         <div
-          class="flex flex-col gap-12 md:gap-16 lg:flex-row lg:gap-24 items-start"
+          class="flex flex-col gap-8 md:gap-10 lg:flex-row lg:gap-16 items-start"
         >
           <div class="w-full lg:w-auto lg:flex-shrink-0">
-            <span class="section-label violet block mb-6 md:mb-10">
+            <span class="section-label violet block mb-4 md:mb-7">
               Projet en cours
             </span>
 
             <h2
-              class="title heading-lunar font-black text-white/85 leading-[0.9] tracking-tight mb-5 md:mb-8"
+              class="title heading-lunar font-black text-white/85 leading-[0.9] tracking-tight mb-4 md:mb-6"
             >
               Lunar<br />Mood
             </h2>
 
             <p
-              class="text-white/35 text-xs md:text-sm tracking-[0.3em] uppercase mb-6 md:mb-10"
+              class="text-white/35 text-xs md:text-sm tracking-[0.3em] uppercase mb-4 md:mb-7"
             >
               Bêta · En évolution
             </p>
 
-            <p class="body-fluid-sm text-white/50 leading-relaxed max-w-md">
-              Un calendrier d’émotions, d’énergie et de consommation
-              personnelle, synchronisé avec les phases lunaires.
+          <p class="body-fluid-sm text-white/50 leading-relaxed max-w-md">
+              Lunar Mood traduit les variations humaines en signaux lisibles :
+              énergie, émotion, cycles et clarté d’action.
             </p>
           </div>
 
-          <div class="w-full pr-8 lg:flex-1 lg:pt-10">
+          <div class="w-full pr-2 lg:pr-6 lg:flex-1 lg:pt-6">
             <div
-              class="border-t border-white/[0.06] py-4 flex items-center justify-between gap-4"
+              class="border-t border-white/[0.06] py-3 flex items-center justify-between gap-4"
             >
               <span
                 class="text-white/35 text-[11px] md:text-xs tracking-[0.28em] uppercase"
@@ -605,7 +710,7 @@
             </div>
 
             <div
-              class="border-t border-white/[0.06] py-4 flex items-center justify-between gap-4"
+              class="border-t border-white/[0.06] py-3 flex items-center justify-between gap-4"
             >
               <span
                 class="text-white/35 text-[11px] md:text-xs tracking-[0.28em] uppercase"
@@ -618,7 +723,7 @@
             </div>
 
             <div
-              class="border-t border-white/[0.06] py-4 flex items-center justify-between gap-4"
+              class="border-t border-white/[0.06] py-3 flex items-center justify-between gap-4"
             >
               <span
                 class="text-white/35 text-[11px] md:text-xs tracking-[0.28em] uppercase"
@@ -631,7 +736,7 @@
             </div>
 
             <div
-              class="border-t border-white/[0.06] py-4 flex items-center justify-between gap-4"
+              class="border-t border-white/[0.06] py-3 flex items-center justify-between gap-4"
             >
               <span
                 class="text-white/35 text-[11px] md:text-xs tracking-[0.28em] uppercase"
@@ -644,7 +749,7 @@
             </div>
 
             <div
-              class="border-t border-b border-white/[0.06] py-4 flex items-center justify-between gap-4"
+              class="border-t border-b border-white/[0.06] py-3 flex items-center justify-between gap-4"
             >
               <span
                 class="text-violet-400/45 text-[11px] md:text-xs tracking-[0.28em] uppercase"
@@ -659,14 +764,14 @@
             </div>
 
             <p
-              class="mt-6 text-white/22 text-[11px] md:text-xs tracking-[0.32em] uppercase"
+              class="mt-4 text-white/22 text-[11px] md:text-xs tracking-[0.32em] uppercase"
             >
               Pas de lien public pour le moment
             </p>
           </div>
         </div>
 
-        <div class="arch-sep mt-12 md:mt-20"></div>
+        <div class="arch-sep mt-8 md:mt-12"></div>
       </div>
     </section>
     <!-- ═══════════════════════════════════════════════
@@ -674,7 +779,7 @@
     ═══════════════════════════════════════════════ -->
     <section
       id="vision"
-      class="min-h-screen flex items-center py-40 px-12 md:px-24 relative overflow-hidden"
+      class="min-h-[78svh] flex items-center py-16 md:py-20 lg:py-24 px-6 md:px-14 lg:px-24 relative overflow-hidden"
     >
       <div
         class="absolute inset-0 bg-gradient-to-b from-black via-[#030507] to-black pointer-events-none"
@@ -689,7 +794,7 @@
         class="vision-ambient absolute inset-0 pointer-events-none"
       ></div>
 
-      <div class="relative z-10 max-w-5xl mx-auto w-full space-y-20">
+      <div class="relative z-10 max-w-5xl mx-auto w-full space-y-11 md:space-y-14">
         <span class="section-label block">Vision</span>
 
         <!-- Line 1 — large, anchored left -->
@@ -700,10 +805,10 @@
         </p>
 
         <!-- Line 2 — body, offset right -->
-        <p class="vision-body-right text-white/42 leading-loose">
-          Les cubes représentent l’ordre dans le vide. L’orbite rappelle un
-          mouvement continu, contrôlé. Pas de chaos, seulement de la profondeur
-          et du calme.
+        <p class="vision-body-right text-white/42 leading-relaxed">
+          Chaque élément incarne une règle simple : rendre le complexe lisible.
+          Le cube tient la structure, le mouvement reste mesuré, le silence
+          conserve l’intention.
         </p>
 
         <!-- Line 3 — large, anchored right -->
@@ -714,10 +819,9 @@
         </p>
 
         <!-- Line 4 — body, anchored left again -->
-        <p class="vision-body-left text-white/38 leading-loose">
-          Le début d'un univers plus large que LunarMood. Outils, IA, systèmes
-          interconnectés par une esthétique cohérente — immersif sans être
-          agressif.
+        <p class="vision-body-left text-white/38 leading-relaxed">
+          Lunar Mood est un seuil. La suite : des outils utiles, reliés par une
+          même architecture visuelle et mentale.
         </p>
       </div>
     </section>
@@ -727,7 +831,7 @@
     ═══════════════════════════════════════════════ -->
     <section
       id="contact"
-      class="min-h-screen flex items-center justify-center py-40 px-8 relative overflow-hidden"
+      class="min-h-[72svh] flex items-center justify-center py-14 md:py-16 lg:py-20 px-6 md:px-8 relative overflow-hidden"
     >
       <div
         class="absolute inset-0 bg-gradient-to-t from-black via-[#020405] to-black/70 pointer-events-none"
@@ -740,23 +844,23 @@
       ></div>
 
       <div class="relative z-10 text-center">
-        <span class="section-label block mb-16">Contact</span>
+        <span class="section-label block mb-9">Contact</span>
 
         <!-- Descent line -->
         <div
-          class="contact-line-down w-px mx-auto mb-16"
+          class="contact-line-down w-px mx-auto mb-9"
           aria-hidden="true"
         ></div>
 
         <h2
-          class="title heading-contact font-black text-white/80 tracking-tight mb-16"
+          class="title heading-contact font-black text-white/80 tracking-tight mb-9"
         >
           Prenons<br />contact
         </h2>
 
         <!-- Ascent line -->
         <div
-          class="contact-line-up w-px mx-auto mb-14"
+          class="contact-line-up w-px mx-auto mb-8"
           aria-hidden="true"
         ></div>
 
@@ -769,34 +873,14 @@
       </div>
     </section>
 
-    <!-- Brickwall JS -->
-    <script>
-      document.querySelectorAll(".brickwall").forEach((panel) => {
-        const cols = 10;
-        const rows = 14;
-
-        for (let r = 0; r < rows; r++) {
-          for (let c = 0; c < cols; c++) {
-            const brick = document.createElement("div");
-            brick.className = "brick";
-
-            brick.style.animationDelay = `${Math.random() * 2}s`;
-            brick.style.animationDuration = `${2 + Math.random() * 2}s`;
-
-            panel.appendChild(brick);
-          }
-        }
-      });
-    </script>
-
     <!-- Smooth scroll -->
     <script>
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
+          const target = document.querySelector(this.getAttribute("href"));
+          if (!target) return;
           e.preventDefault();
-          document
-            .querySelector(this.getAttribute("href"))
-            .scrollIntoView({ behavior: "smooth" });
+          target.scrollIntoView({ behavior: "smooth" });
         });
       });
     </script>
