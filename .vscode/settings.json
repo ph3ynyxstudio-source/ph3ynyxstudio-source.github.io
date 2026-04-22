@@ -1,4 +1,5 @@
 {
   "chatgpt.openOnStartup": false,
-  "window.density.editorTabHeight": "compact"
+  "window.density.editorTabHeight": "compact",
+  "liveServer.settings.port": 5501
 }
