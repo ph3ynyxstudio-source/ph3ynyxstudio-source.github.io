@@ -99,7 +99,7 @@ if (!container) {
   }
 
   function getMobileAdjustedY() {
-    return window.innerWidth < 768 ? { start: 0.55, end: 0.78 } : { start: 0.3, end: 0.76 };
+    return window.innerWidth < 768 ? { start: 0.84, end: 0.78 } : { start: 0.48, end: 0.76 };
   }
 
   function getMobileAdjustedZ() {
@@ -112,6 +112,12 @@ if (!container) {
 
   function easeOutSoft(value) {
     return 1 - Math.pow(1 - value, 2);
+  }
+
+  function easeOutBack(value) {
+    const overshoot = 1.28;
+    const t = value - 1;
+    return 1 + (overshoot + 1) * Math.pow(t, 3) + overshoot * Math.pow(t, 2);
   }
 
   function setSize() {
@@ -138,6 +144,7 @@ if (!container) {
     const elapsed = now - emergence.start;
     const progress = Math.min(elapsed / emergence.duration, 1);
     const eased = easeOutSoft(progress);
+    const arrival = easeOutBack(progress);
     const scale = getTargetScale() * eased;
     const floatOffset = Math.sin(now * 0.001) * 0.05;
     const yRange = getMobileAdjustedY();
@@ -150,7 +157,7 @@ if (!container) {
 
     cube.scale.setScalar(scale);
     cube.position.x = isMobile ? 0 : xOffset + pointer.x * 0.18;
-    cube.position.y = MathUtils.lerp(yRange.start, yRange.end, eased) + floatOffset;
+    cube.position.y = MathUtils.lerp(yRange.start, yRange.end, arrival) + floatOffset;
     cube.position.z = MathUtils.lerp(zRange.start, zRange.end, eased);
     cube.rotation.x = -0.18 + pointer.y;
     cube.rotation.y += 0.0044;
