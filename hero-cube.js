@@ -95,15 +95,15 @@ if (!container) {
   };
 
   function getTargetScale() {
-    return window.innerWidth < 768 ? 0.28 : 0.34;
+    return window.innerWidth < 768 ? 0.235 : 0.34;
   }
 
   function getMobileAdjustedY() {
-    return window.innerWidth < 768 ? { start: 0.8, end: 1 } : { start: 0.3, end: 0.76 };
+    return window.innerWidth < 768 ? { start: 0.55, end: 0.78 } : { start: 0.3, end: 0.76 };
   }
 
   function getMobileAdjustedZ() {
-    return window.innerWidth < 768 ? { start: -3.35, end: -0.26 } : { start: -2.8, end: -0.2 };
+    return window.innerWidth < 768 ? { start: -3.6, end: -0.42 } : { start: -2.8, end: -0.2 };
   }
 
   function getMobileAdjustedX() {
