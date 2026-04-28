@@ -2,10 +2,39 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <title>
-      Mentions Légales & Politique de Confidentialité - Ph3yNyx.Studio
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentions Légales & Politique de Confidentialité - Ph3yNyx.Studio</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      .phase-block {
+        border-radius: 14px;
+        padding: 18px 20px;
+        margin: 14px 0;
+      }
+      .phase-v1 {
+        border-left: 4px solid #00ffcc;
+        background: rgba(0, 255, 204, 0.06);
+      }
+      .phase-v2 {
+        border-left: 4px solid #a78bfa;
+        background: rgba(167, 139, 250, 0.06);
+      }
+      .phase-label {
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .phase-v1 .phase-label { color: #00ffcc; }
+      .phase-v2 .phase-label { color: #a78bfa; }
+      .note-small {
+        font-size: 0.9rem;
+        opacity: 0.65;
+        font-style: italic;
+        margin-top: 12px;
+      }
+    </style>
   </head>
 
   <body class="legal-page">
@@ -14,8 +43,8 @@
         <a href="../index.html" style="color: #00ffff">← Retour au Hub</a>
       </nav>
 
-      <h1>Mentions Légales & Politique de Confidentialité</h1>
-      <p><small>Dernière mise à jour : 25 avril 2026</small></p>
+      <h1>Mentions Légales &amp; Politique de Confidentialité</h1>
+      <p><small>Dernière mise à jour : 28 avril 2026</small></p>
 
       <section>
         <h3>1. Identification de l'Entité</h3>
@@ -23,61 +52,122 @@
           <strong>Éditeur :</strong> Ph3yNyx.Studio<br />
           <strong>Localisation :</strong> Gatineau, Québec, Canada<br />
           <strong>Contact officiel :</strong> ph3ynyx.studio@gmail.com<br />
-          <strong>Hébergement :</strong> GitHub Pages (Service fourni par
-          GitHub, Inc., États-Unis)
+          <strong>Hébergement site :</strong> GitHub Pages (Service fourni par GitHub, Inc., États-Unis)
         </p>
       </section>
 
       <section>
-        <h3>2. Politique de Confidentialité & Souveraineté Numérique</h3>
+        <h3>2. Nature du service</h3>
+        <p>
+          Les applications Ph3yNyx.Studio (dont lun4rmood) sont des outils de bien-être
+          et d'auto-observation personnelle. Elles aident l'utilisateur à suivre des
+          tendances comme l'humeur, l'énergie, le sommeil ou les habitudes quotidiennes.
+        </p>
+        <p>
+          Elles ne fournissent pas de diagnostic médical, psychiatrique ou psychologique,
+          ne proposent pas de traitement, et ne remplacent pas un professionnel de santé.
+          Toute suggestion affichée est à titre informatif et non médical.
+        </p>
+      </section>
+
+      <section>
+        <h3>3. Politique de Confidentialité &amp; Souveraineté Numérique</h3>
         <p>
           Chez Ph3yNyx.Studio, notre architecture est fondée sur le principe de
           <strong>souveraineté numérique</strong>. Notre politique de gestion
           des données évolue selon la maturité de nos solutions :
         </p>
-        <ul>
-          <li>
-            <strong>Phase v1 (Actuelle) :</strong> Nos applications (lun4rmood,
-            eng1ne) sont développées en mode <em>"offline-first"</em> strict. Le
-            traitement des données est local et déterministe. Aucune donnée
-            n'est collectée, transmise ou stockée sur des serveurs distants.
-          </li>
-          <li>
-            <strong>Phases v2+ (Évolutions futures) :</strong> Toute future
-            fonctionnalité nécessitant une connectivité réseau sera soumise à
-            une politique de <strong>consentement explicite</strong>.
+
+        <div class="phase-block phase-v1">
+          <div class="phase-label">Phase v1 — Version actuelle</div>
+          <p>
+            Nos applications (lun4rmood, eng1ne) sont développées en mode
+            <em>offline-first</em> strict. Le traitement des données est entièrement
+            local et déterministe sur l'appareil de l'utilisateur.
+          </p>
+          <p>
+            Aucune donnée personnelle n'est collectée, transmise ou stockée sur
+            des serveurs opérés par Ph3yNyx.Studio via l'application elle-même
+            dans cette version. Aucun compte utilisateur, aucune synchronisation
+            cloud, aucune analytique distante n'est activée.
+          </p>
+        </div>
+
+        <div class="phase-block phase-v2">
+          <div class="phase-label">Phase v2+ — Évolutions futures</div>
+          <p>
+            Toute future fonctionnalité nécessitant une connectivité réseau,
+            une synchronisation, une IA connectée ou une collecte de données
+            sera soumise à une politique de <strong>consentement explicite</strong>.
+          </p>
+          <p>
             L'utilisateur conservera la maîtrise totale : aucune donnée ne sera
-            traitée sans approbation légale préalable et transparente.
-          </li>
-        </ul>
-        <p>
-          <small
-            ><em
-              >Note : L'hébergeur (GitHub Pages) applique ses propres logs de
-              sécurité (adresses IP) pour garantir l'intégrité du service,
-              conformément à ses conditions d'utilisation globales.</em
-            ></small
-          >
+            traitée sans information claire, approbation préalable et mise à jour
+            transparente de la présente politique avant tout déploiement.
+          </p>
+        </div>
+
+        <p class="note-small">
+          Note : L'hébergeur du site (GitHub Pages) peut appliquer ses propres
+          journaux techniques de sécurité (ex. adresses IP) pour garantir
+          l'intégrité de son infrastructure. Ces journaux relèvent de l'hébergeur
+          et ne signifient pas que l'application collecte des données utilisateur.
         </p>
       </section>
 
       <section>
-        <h3>3. Propriété Intellectuelle</h3>
+        <h3>4. Conservation et suppression</h3>
         <p>
-          L'intégralité du contenu éditorial, graphique, et technique présent
-          sur ce site est la propriété exclusive de
-          <strong>Ph3yNyx.Studio</strong>. Toute exploitation, reproduction ou
-          modification non autorisée est strictement prohibée.
+          Dans la version locale actuelle, les données demeurent sur l'appareil
+          de l'utilisateur jusqu'à leur suppression manuelle ou désinstallation
+          de l'application, sous réserve du fonctionnement normal du système
+          d'exploitation et des mécanismes de sauvegarde activés par l'utilisateur.
+        </p>
+        <p>
+          Si une version future introduit un compte, une sauvegarde ou une
+          synchronisation, les règles de conservation et de suppression seront
+          détaillées dans une version mise à jour de cette politique.
         </p>
       </section>
 
       <section>
-        <h3>4. Clause de Limitation de Responsabilité</h3>
+        <h3>5. Sécurité</h3>
         <p>
-          Ph3yNyx.Studio met tout en œuvre pour assurer l'exactitude des
-          informations diffusées. Toutefois, l'éditeur ne saurait être tenu
-          responsable des erreurs ou omissions techniques potentielles
-          inhérentes à l'hébergement tiers.
+          Ph3yNyx.Studio applique une logique de minimisation des données et de
+          sobriété technique. Les permissions demandées sont limitées au strict
+          nécessaire au fonctionnement de l'application. Les mesures de sécurité
+          seront adaptées à l'évolution réelle du produit.
+        </p>
+      </section>
+
+      <section>
+        <h3>6. Propriété Intellectuelle</h3>
+        <p>
+          L'intégralité du contenu éditorial, graphique et technique présent
+          sur ce site est la propriété exclusive de <strong>Ph3yNyx.Studio</strong>.
+          Toute exploitation, reproduction ou modification non autorisée est strictement prohibée.
+        </p>
+      </section>
+
+      <section>
+        <h3>7. Limitation de Responsabilité</h3>
+        <p>
+          Ph3yNyx.Studio met tout en œuvre pour assurer la cohérence et l'exactitude
+          des informations diffusées. Toutefois, l'éditeur ne saurait être tenu
+          responsable des erreurs ou omissions techniques inhérentes à l'hébergement tiers.
+        </p>
+        <p>
+          En cas de difficulté importante liée à la santé physique ou mentale,
+          il convient de se tourner vers une ressource humaine qualifiée ou un
+          service d'urgence adapté.
+        </p>
+      </section>
+
+      <section>
+        <h3>8. Contact</h3>
+        <p>
+          Pour toute question relative à la confidentialité ou à cette politique :
+          <a href="mailto:ph3ynyx.studio@gmail.com" style="color:#00ffff">ph3ynyx.studio@gmail.com</a>
         </p>
       </section>
     </main>
