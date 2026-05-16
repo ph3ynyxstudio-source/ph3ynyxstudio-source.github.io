@@ -14,69 +14,52 @@ function supportsWebGL() {
     const canvas = document.createElement("canvas");
     return Boolean(
       window.WebGLRenderingContext &&
-        (canvas.getContext("webgl") || canvas.getContext("experimental-webgl"))
+      (canvas.getContext("webgl") || canvas.getContext("experimental-webgl")),
     );
   } catch {
     return false;
   }
 }
 
-function hideCubeContainer(container) {
-  container.style.display = "none";
-}
+function hideCubeContainer(container) {}
 
 function showCubeContainer(container) {
   container.style.display = "";
 }
 
 async function initHeroCube() {
+  console.log("[cube] init start");
+
   if (window[HERO_CUBE_STATE_KEY]?.initialized) {
     return;
   }
 
   const container = document.getElementById("canvas-container");
+  console.log("[cube] container", container);
+
   if (!container) {
     return;
   }
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (reduceMotion.matches) {
-    hideCubeContainer(container);
-
-    const state = {
-      initialized: true,
-      destroy() {
-        reduceMotion.removeEventListener("change", onReducedMotionOnlyChange);
-        showCubeContainer(container);
-        delete window[HERO_CUBE_STATE_KEY];
-      },
-    };
-
-    function onReducedMotionOnlyChange(event) {
-      if (!event.matches) {
-        state.destroy();
-        void initHeroCube();
-      }
-    }
-
-    window[HERO_CUBE_STATE_KEY] = state;
-    reduceMotion.addEventListener("change", onReducedMotionOnlyChange);
-    return;
-  }
+  console.log("[cube] reduce motion", reduceMotion.matches);
 
   showCubeContainer(container);
 
+  console.log("[cube] webgl supported", supportsWebGL());
   if (!supportsWebGL()) {
     return;
   }
 
   let three;
   try {
-    three = await import("https://unpkg.com/three@0.167.1/build/three.module.js");
+    three = await import("./vendor/three.module.js");
   } catch (error) {
     console.warn("Hero cube disabled: unable to load Three.js.", error);
     return;
   }
+
+  console.log("[cube] three loaded");
 
   if (!container.isConnected || container.dataset.heroCubeMounted === "true") {
     return;
@@ -112,7 +95,9 @@ async function initHeroCube() {
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = SRGBColorSpace;
   renderer.domElement.setAttribute("aria-hidden", "true");
+  console.log("[cube] append canvas");
   container.appendChild(renderer.domElement);
+  console.log("[cube] canvas appended", container.querySelector("canvas"));
   container.dataset.heroCubeMounted = "true";
 
   const ambientLight = new AmbientLight(0xffffff, 0.1);
@@ -204,12 +189,8 @@ async function initHeroCube() {
       reduceMotion.removeEventListener("change", onReducedMotionChange);
       container.removeEventListener("mouseleave", onMouseLeave);
       renderer.domElement.remove();
-      if (reduceMotion.matches) {
-        hideCubeContainer(container);
-      } else {
-        showCubeContainer(container);
-        container.dataset.heroCubeMounted = "false";
-      }
+      showCubeContainer(container);
+      container.dataset.heroCubeMounted = "false";
       delete window[HERO_CUBE_STATE_KEY];
     },
   };
@@ -277,45 +258,55 @@ async function initHeroCube() {
 
   function onVisibilityChange() {
     isVisible = !document.hidden;
-    if (isVisible && !reducedMotionEnabled && !rafId) {
+    if (isVisible && !rafId) {
       rafId = requestAnimationFrame(animate);
     }
   }
 
   function onReducedMotionChange(event) {
     reducedMotionEnabled = event.matches;
-    if (reducedMotionEnabled) {
-      state.destroy();
-      void initHeroCube();
+    if (isVisible && !rafId) {
+      rafId = requestAnimationFrame(animate);
     }
   }
 
   function animate(now) {
     rafId = 0;
-    if (isDestroyed || reducedMotionEnabled || !isVisible || !container.isConnected) {
+    if (
+      isDestroyed ||
+      !isVisible ||
+      !container.isConnected
+    ) {
       return;
     }
+
+    const motionFactor = reducedMotionEnabled ? 0.22 : 1;
+    const pointerLerp = reducedMotionEnabled ? 0.012 : 0.035;
+    const floatAmplitude = reducedMotionEnabled ? 0.015 : 0.05;
+    const floatSpeed = reducedMotionEnabled ? 0.00035 : 0.001;
 
     const elapsed = now - emergence.start;
     const progress = Math.min(elapsed / emergence.duration, 1);
     const eased = easeOutSoft(progress);
     const arrival = easeOutBack(progress);
     const scale = getTargetScale() * eased;
-    const floatOffset = Math.sin(now * 0.001) * 0.05;
+    const floatOffset = Math.sin(now * floatSpeed) * floatAmplitude;
     const yRange = getMobileAdjustedY();
     const zRange = getMobileAdjustedZ();
     const isMobile = window.innerWidth < 768;
+    const rotationSpeed = (isMobile ? 0.0028 : 0.0044) * motionFactor;
 
-    pointer.x += (pointer.targetX - pointer.x) * 0.035;
-    pointer.y += (pointer.targetY - pointer.y) * 0.035;
+    pointer.x += (pointer.targetX - pointer.x) * pointerLerp;
+    pointer.y += (pointer.targetY - pointer.y) * pointerLerp;
 
     cube.scale.setScalar(scale);
-    cube.position.x = isMobile ? 0 : pointer.x * 0.18;
-    cube.position.y = MathUtils.lerp(yRange.start, yRange.end, arrival) + floatOffset;
+    cube.position.x = isMobile ? 0 : pointer.x * 0.18 * motionFactor;
+    cube.position.y =
+      MathUtils.lerp(yRange.start, yRange.end, arrival) + floatOffset;
     cube.position.z = MathUtils.lerp(zRange.start, zRange.end, eased);
-    cube.rotation.x = pointer.y * 0.55;
-    cube.rotation.y += isMobile ? 0.0028 : 0.0044;
-    cube.rotation.z = pointer.x * 0.12;
+    cube.rotation.x = pointer.y * 0.55 * motionFactor;
+    cube.rotation.y += rotationSpeed;
+    cube.rotation.z = pointer.x * 0.12 * motionFactor;
     coreLight.position.copy(cube.position);
 
     edgeMaterial.opacity = 0.08 + eased * 0.18;
