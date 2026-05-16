@@ -1,3 +1,4 @@
+/* BOOKMARK: CSS_PAGE_BACKGROUND */
 body {
   background: radial-gradient(circle, #1a0b2e, #000);
   color: #e0e0e0;
@@ -8,6 +9,7 @@ body {
   height: 100vh;
   margin: 0;
 }
+/* BOOKMARK: CSS_GLASS_CARD */
 .glass-card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(15px);
@@ -17,6 +19,7 @@ body {
   text-align: center;
   max-width: 500px;
 }
+/* BOOKMARK: CSS_LINK_PRIMARY */
 a {
   color: #00d4ff;
   text-decoration: none;

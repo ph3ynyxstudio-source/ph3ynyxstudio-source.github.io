@@ -16,6 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap"
       rel="stylesheet" />
     <style>
+      /* BOOKMARK: CSS_ROOT_TOKENS */
       :root {
         color-scheme: dark;
         --bg-black: #020304;
@@ -59,6 +60,7 @@
 
       /* Dark architectural surface — felt more than seen */
 
+      /* BOOKMARK: CSS_HERO_BLOCK */
       .hero {
         position: relative;
         min-height: 100svh;
@@ -137,6 +139,7 @@
         overflow: hidden;
       }
 
+      /* BOOKMARK: CSS_BACK_CUBE */
       .back-cube {
         position: fixed;
         right: 1.2rem;
@@ -771,6 +774,7 @@
 
       /* Project section refactor:
          two real project rows with visual, copy, and status. */
+      /* BOOKMARK: CSS_PROJECTS_BASE */
       .project-list {
         width: 100%;
         display: flex;
@@ -805,11 +809,7 @@
       .project-visual {
         width: 8.5rem;
         aspect-ratio: 1 / 1;
-        overflow: hidden;
-        background: rgba(12, 18, 24, 0.82);
-        box-shadow:
-          0 0 0 1px rgba(255, 255, 255, 0.04) inset,
-          0 14px 28px rgba(0, 0, 0, 0.2);
+        overflow: visible;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -819,18 +819,14 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-          180deg,
-          rgba(5, 9, 12, 0.08) 0%,
-          rgba(5, 9, 12, 0.32) 100%
-        );
+        background: transparent;
         pointer-events: none;
       }
 
       .project-visual img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         display: block;
         filter: brightness(0.95) saturate(0.9);
         opacity: 0.9;
@@ -908,6 +904,162 @@
           align-items: flex-start;
           flex-direction: column;
         }
+      }
+
+      /* Services section card layout only */
+      /* BOOKMARK: CSS_SERVICES_GRID */
+      #services .project-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.5rem;
+      }
+
+      #services .project-card {
+        display: block;
+        padding: 1.25rem 1rem;
+        width: 100%;
+      }
+
+      #services .project-description {
+        max-width: none;
+      }
+
+      @media (max-width: 1099px) {
+        #services .project-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 767px) {
+        #services .project-list {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* BOOKMARK: CSS_PROJETS_GRID */
+      #projets .project-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 1100px) {
+        #projets .project-card {
+          grid-template-columns: 18rem 1fr;
+          gap: 1.6rem;
+        }
+
+        #projets .project-visual {
+          width: 18rem;
+        }
+      }
+
+      #projets .project-visual {
+        position: relative;
+      }
+
+      #projets .project-visual a {
+        display: block;
+      }
+
+      #projets .project-visual a:first-child {
+        position: relative;
+        z-index: 2;
+      }
+
+      #projets .project-visual a:last-child {
+        position: relative;
+        z-index: 1;
+        margin-left: 0.6rem;
+        margin-top: -0.55rem;
+      }
+
+      #projets .project-visual.project-visual-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0;
+        align-content: start;
+      }
+
+      #projets .project-visual.project-visual-grid a {
+        margin: 0;
+        position: relative;
+        z-index: auto;
+      }
+
+      #projets .project-visual.project-visual-grid a:nth-child(1) {
+        width: 102%;
+        z-index: 4;
+      }
+
+      #projets .project-visual.project-visual-grid a:nth-child(2) {
+        width: 96%;
+        margin-left: -0.42rem;
+        margin-top: 0.18rem;
+        z-index: 3;
+      }
+
+      #projets .project-visual.project-visual-grid a:nth-child(3) {
+        width: 97%;
+        margin-top: -0.5rem;
+        margin-left: 0.12rem;
+        z-index: 2;
+      }
+
+      #projets .project-visual.project-visual-grid a:nth-child(4) {
+        width: 100%;
+        margin-left: -0.48rem;
+        margin-top: -0.36rem;
+        z-index: 1;
+      }
+
+      @media (max-width: 767px) {
+        #projets .project-list {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* BOOKMARK: CSS_IMAGE_OVERLAY */
+      .image-overlay {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem;
+        background: rgba(2, 6, 10, 0.86);
+        z-index: 120;
+      }
+
+      .image-overlay.is-open {
+        display: flex;
+      }
+
+      .image-overlay-inner {
+        position: relative;
+        width: min(92vw, 1200px);
+        max-height: 92vh;
+      }
+
+      .image-overlay img {
+        width: 100%;
+        height: auto;
+        max-height: 92vh;
+        object-fit: contain;
+        display: block;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      .image-overlay-close {
+        position: absolute;
+        top: -0.65rem;
+        right: -0.65rem;
+        width: 2.1rem;
+        height: 2.1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(3, 8, 12, 0.9);
+        color: rgba(255, 255, 255, 0.9);
+        cursor: pointer;
       }
 
       .accent-violet {
@@ -1165,6 +1317,7 @@
       }
 
       /* ─── Contact section ────────────────────────────────────── */
+      /* BOOKMARK: CSS_CONTACT_BLOCK */
       .contact-floor {
         background: linear-gradient(
           0deg,
@@ -1356,13 +1509,16 @@
     </style>
   </head>
   <body>
+    <!-- BOOKMARK: HERO_START -->
     <section id="hero" class="hero">
+      <!-- BOOKMARK: HERO_LOGO_ASSET -->
       <img
         class="hero-logo"
         src="/asset/branding/logo-ph3ynyx.png"
         alt="Ph3yNyx logo"
         onerror="this.style.display = 'none'" />
 
+      <!-- BOOKMARK: HERO_BG_ASSETS -->
       <div class="hero-bg">
         <picture>
           <source
@@ -1382,11 +1538,11 @@
 
           <div class="hero-copy">
             <h1 class="title hero-title">Ph3yNyx.Studio</h1>
-            <p class="hero-subtitle">Créer du calme dans un monde saturé.</p>
+            <p class="hero-subtitle">Services</p>
             <nav class="hero-band">
-              <a href="#who">À propos</a>
-              <a href="../services.html">Services</a>
-              <a href="#vision">Vision</a>
+              <a href="#services">Services</a>
+              <a href="#projets">Projets</a>
+              <a href="#process">Process</a>
               <a href="#contact">Contact</a>
             </nav>
             <div class="hero-direct-contact">
@@ -1400,46 +1556,8 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════
-         IDENTITÉ — Qui je suis
-    ═══════════════════════════════════════════════ -->
     <section
-      id="who"
-      class="section min-h-screen flex items-end py-28 px-12 md:px-24 lg:px-40 relative overflow-hidden">
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-black via-[#020508] to-black/80 pointer-events-none"></div>
-
-      <div class="arch-rule-v arch-rule-left-12"></div>
-
-      <div
-        aria-hidden="true"
-        class="ghost-letter absolute right-0 bottom-0 text-[28vw] font-black select-none pointer-events-none overflow-hidden">
-        B.
-      </div>
-
-      <div class="relative z-10 max-w-3xl">
-        <span class="section-label block mb-7">Identité</span>
-
-        <h2
-          class="title title-glow-cyan title-glow-violet font-black text-white/90 leading-[0.98] mb-10 tracking-tight text-[1.95rem] sm:text-6xl lg:text-7xl">
-          Systèmes.<br />IA.
-        </h2>
-
-        <div class="who-body space-y-6 text-white/50 leading-loose">
-          <p>Je ne construis pas des applications.</p>
-          <p>Je construis des systèmes.</p>
-          <p>
-            Des espaces numériques calmes, structurés, et pensés pour durer.
-          </p>
-          <p>
-            <span class="accent-violet">Moins de bruit. Plus de clarté.</span>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section
-      id="building"
+      id="services"
       class="section min-h-screen flex items-center py-14 px-6 md:px-16 lg:px-24 relative overflow-hidden">
       <div
         class="absolute inset-0 bg-gradient-to-b from-black/80 via-[#020406] to-black pointer-events-none"></div>
@@ -1448,191 +1566,187 @@
 
       <div class="relative z-10 w-full max-w-6xl mx-auto">
         <div class="arch-sep mb-8 md:mb-12"></div>
+        <div class="w-full lg:w-[28rem] lg:flex-shrink-0 mb-10">
+          <span
+            class="section-label section-label-project violet block mb-5 md:mb-7">
+            Services
+          </span>
+          <p class="project-lead mb-5 md:mb-7">
+            Des livrables simples pour des besoins concrets.
+          </p>
+        </div>
+        <div class="project-list">
+          <!-- BOOKMARK: SERVICE_CARD_1 -->
+          <article class="project-card">
+            <div class="project-copy">
+              <div class="project-copy-head">
+                <h3 class="project-name">Site vitrine</h3>
+              </div>
+              <p class="project-description">
+                Freelance, artisan, thérapeute, coach ou petite entreprise
+                locale.
+              </p>
+              <p class="project-description">
+                Page d’accueil, à propos, services, contact. Design sobre et
+                responsive. Hébergement, mise en ligne et livraison autonome.
+              </p>
+            </div>
+          </article>
+          <!-- BOOKMARK: SERVICE_CARD_2 -->
+          <article class="project-card">
+            <div class="project-copy">
+              <div class="project-copy-head">
+                <h3 class="project-name">Landing page</h3>
+              </div>
+              <p class="project-description">
+                Lancement d’une offre, promotion ou projet précis à présenter.
+              </p>
+              <p class="project-description">
+                Une page orientée action avec message simple et CTA direct.
+                Rapide à produire et facile à partager.
+              </p>
+            </div>
+          </article>
+          <!-- BOOKMARK: SERVICE_CARD_3 -->
+          <article class="project-card">
+            <div class="project-copy">
+              <div class="project-copy-head">
+                <h3 class="project-name">Refonte légère + IA</h3>
+              </div>
+              <p class="project-description">
+                Site vieillissant ou confus à simplifier et moderniser.
+              </p>
+              <p class="project-description">
+                Mise à jour visuelle et textuelle, avec aide IA pour structurer
+                les contenus si pertinent.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        <div
-          class="flex flex-col gap-9 md:gap-12 lg:flex-row lg:gap-16 items-start">
-          <div class="w-full lg:w-[28rem] lg:flex-shrink-0">
-            <span
-              class="section-label section-label-project violet block mb-5 md:mb-7">
-              Projet en cours
-            </span>
+    <section
+      id="projets"
+      class="section min-h-screen flex items-center py-14 px-6 md:px-16 lg:px-24 relative overflow-hidden">
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-black/80 via-[#020406] to-black pointer-events-none"></div>
+      <div class="arch-rule-v violet arch-rule-right-12"></div>
+      <div class="relative z-10 w-full max-w-6xl mx-auto">
+        <div class="arch-sep mb-8 md:mb-12"></div>
+        <div class="w-full lg:w-[28rem] lg:flex-shrink-0 mb-10">
+          <span
+            class="section-label section-label-project violet block mb-5 md:mb-7">
+            Projets
+          </span>
+        </div>
+        <div class="project-list">
+          <!-- BOOKMARK: PROJECT_CARD_LUN4RMOOD -->
+          <article class="project-card">
+            <!-- BOOKMARK: PROJECT_ASSETS_LUN4RMOOD -->
+            <div class="project-visual">
+              <a href="/asset/lun4rmood-screen.png" target="_self">
+                <img
+                  src="/asset/lun4rmood-screen.png"
+                  alt="Capture 1 du projet lun4rmood"
+                  onerror="this.style.display = 'none'" />
+              </a>
+              <a href="/asset/Lun4rMood_En.png" target="_self">
+                <img
+                  src="/asset/Lun4rMood_En.png"
+                  alt="Capture 2 du projet lun4rmood"
+                  onerror="this.style.display = 'none'" />
+              </a>
+            </div>
+            <div class="project-copy">
+              <div class="project-copy-head">
+                <h3 class="project-name">lun4rmood</h3>
+                <span class="project-status">Pré-lancement</span>
+              </div>
+              <p class="project-description">App de suivi personnel.</p>
+              <p class="project-description">
+                Émotions, énergie et habitudes suivies dans le temps, avec des
+                statistiques légères.
+              </p>
+              <div class="mt-6">
+                <a
+                  href="../lun4rmood/index.html"
+                  class="inline-flex items-center px-4 py-2 text-sm border border-white/20 rounded-lg hover:bg-white/10 transition-colors duration-300">
+                  → Explorer
+                </a>
+              </div>
+            </div>
+          </article>
 
-            <p class="project-lead mb-5 md:mb-7">
-              Deux systèmes structurent actuellement l'univers Ph3yNyx.Studio.
-            </p>
-          </div>
-
-          <div class="w-full pr-0 lg:flex-1 lg:pt-10">
-            <div class="project-list">
-              <article class="project-card">
-                <div class="project-visual">
-                  <img
-                    src="/asset/projects/lun4rmood.png"
-                    alt="Aperçu visuel du projet lun4rmood"
-                    onerror="this.style.display = 'none'" />
-                </div>
-                <div class="project-copy">
-                  <div class="project-copy-head">
-                    <h3 class="project-name">lun4rmood</h3>
-                    <span class="project-status">Pré-lancement</span>
-                  </div>
-                  <p class="project-description">
-                    Un espace pour se comprendre.
-                  </p>
-                  <p class="project-description">
-                    Observer ses émotions. Identifier ses patterns. Évoluer sans
-                    pression.
-                  </p>
-                  <div class="mt-6">
-                    <a
-                      href="../lun4rmood/index.html"
-                      class="inline-flex items-center px-4 py-2 text-sm border border-white/20 rounded-lg hover:bg-white/10 transition-colors duration-300">
-                      Explorer lun4rmood →
-                    </a>
-                  </div>
-                </div>
-              </article>
-
-<!-- BOOKMARK: PROJECT_CARD_ASTR4L -->
-              <article class="project-card">
+          <!-- BOOKMARK: PROJECT_CARD_ASTR4L -->
+          <article class="project-card">
             <!-- BOOKMARK: PROJECT_ASSETS_ASTR4L -->
             <div class="project-visual project-visual-grid">
               <a href="/asset/astr4l-screen-2.png" target="_self">
-                  <img
-                    src="/asset/projects/eng1ne.png"
-                    alt="Aperçu visuel du projet PH3YNYX HUB"
-                    onerror="this.style.display = 'none'" />
-                </div>
-                <div class="project-copy">
-                  <div class="project-copy-head">
-                    <h3 class="project-name">PH3YNYX HUB</h3>
-                    <span class="project-status">En développement</span>
-                  </div>
-                  <p class="project-description">
-                    Un noyau pour structurer ses idées.
-                  </p>
-                  <p class="project-description">
-                    Capturer. Analyser. Construire. Simple, rapide, et toujours
-                    clair.
-                  </p>
-                  <div class="mt-6">
-                    <a
-                      href="../eng1ne/index.html"
-                      class="inline-flex items-center px-4 py-2 text-sm border border-white/20 rounded-lg hover:bg-white/10 transition-colors duration-300">
-                      Explorer le HUB →
-                    </a>
-                  </div>
-                </div>
-              </article>
+                <img
+                  src="/asset/astr4l-screen-2.png"
+                  alt="Capture Astr4l Design"
+                  onerror="this.style.display = 'none'" />
+              </a>
+              <a href="/asset/pocket-PC.png" target="_self">
+                <img
+                  src="/asset/pocket-PC.png"
+                  alt="Capture éditeur Astr4l Design sur PC"
+                  onerror="this.style.display = 'none'" />
+              </a>
+              <a href="/asset/astr4l_1er_export.png" target="_self">
+                <img
+                  src="/asset/astr4l_1er_export.png"
+                  alt="Capture premier export Astr4l Design"
+                  onerror="this.style.display = 'none'" />
+              </a>
+              <a href="/asset/pocket-draft.png" target="_self">
+                <img
+                  src="/asset/pocket-draft.png"
+                  alt="Capture pocket draft Astr4l Design"
+                  onerror="this.style.display = 'none'" />
+              </a>
             </div>
-          </div>
-        </div>
-
-        <div class="arch-sep mt-8 md:mt-12"></div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════
-         VISION — Structure & Clarté
-    ═══════════════════════════════════════════════ -->
-    <section
-      id="vision"
-      class="section min-h-screen flex items-center py-26 px-12 md:px-24 relative overflow-hidden">
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-black via-[#030507] to-black pointer-events-none"></div>
-
-      <div class="arch-rule-v arch-rule-left-6"></div>
-
-      <div
-        aria-hidden="true"
-        class="vision-ambient absolute inset-0 pointer-events-none"></div>
-
-      <div class="vision-layout">
-        <div class="vision-divider" aria-hidden="true"></div>
-
-        <div class="vision-column">
-          <span class="section-label block mb-10">Vision</span>
-
-          <h2 class="title vision-heading-primary font-black tracking-tight">
-            Structure<br />&amp; Clarté.
-          </h2>
-
-          <div class="vision-body-wrap">
-            <p class="vision-body">
-              Pas de chaos. Pas de surcharge. Seulement ce qui compte.
-            </p>
-          </div>
-        </div>
-
-        <div class="vision-column vision-column-right">
-          <h3 class="title vision-heading-secondary font-black tracking-tight">
-            Calme.<br />Évolutif.
-          </h3>
-
-          <div class="vision-body-wrap">
-            <p class="vision-body">
-              Un univers d'outils interconnectés, pensé pour évoluer dans le
-              temps.
-            </p>
-          </div>
+            <div class="project-copy">
+              <div class="project-copy-head">
+                <h3 class="project-name">Astr4l Design</h3>
+                <span class="project-status">En développement</span>
+              </div>
+              <p class="project-description">
+                Outil d’exploration et de création visuelle.
+              </p>
+              <p class="project-description">
+                Structurer des idées design, tester des directions visuelles et
+                préparer des éléments graphiques numériques.
+              </p>
+              <div class="mt-6">
+                <a
+                  href="../eng1ne/index.html"
+                  class="inline-flex items-center px-4 py-2 text-sm border border-white/20 rounded-lg hover:bg-white/10 transition-colors duration-300">
+                  → Explorer
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
     <section
-      id="build"
-      class="section min-h-[78vh] flex items-center py-18 px-8 md:px-16 lg:px-24 relative overflow-hidden">
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-black via-[#020406] to-black pointer-events-none"></div>
-
-      <div
-        aria-hidden="true"
-        class="build-ambient absolute inset-0 pointer-events-none"></div>
-
-      <div class="arch-rule-v violet arch-rule-right-12"></div>
-
-      <section class="expertise-section">
-        <div>
-          <span class="section-label block mb-8">Expertise</span>
-          <h2 class="title expertise-title tracking-tight">
-            Ce que je construis
-          </h2>
-        </div>
-
-        <ul class="expertise-list">
-          <li>Interfaces sobres et précises</li>
-          <li>Systèmes modulaires</li>
-          <li>Outils assistés par l'IA</li>
-          <li>MVP rapides et cohérents</li>
-          <li>Expériences digitales claires</li>
-        </ul>
-      </section>
-    </section>
-
-    <section
-      id="collaborations"
+      id="process"
       class="section collab-section min-h-[52vh] flex items-center justify-center py-16 px-8 md:px-16 lg:px-24 relative">
       <div
         class="absolute inset-0 bg-gradient-to-b from-black via-[#020406] to-black pointer-events-none"></div>
-
       <div
         aria-hidden="true"
         class="collab-ambient absolute inset-0 pointer-events-none"></div>
-
       <div class="collab-shell">
-        <span class="section-label block mb-8">Collaborations</span>
-
-        <h2 class="title collab-title font-black tracking-tight">
-          Collaborations
-        </h2>
-
+        <span class="section-label block mb-8">Process</span>
         <p class="collab-body">
-          Disponible pour des projets freelance autour d'interfaces web et de
-          systèmes simples à utiliser.
-        </p>
-
-        <p class="collab-meta">
-          Freelance · Collaboration créative · Projets sur mesure
+          1. Tu me décris ton projet par email.<br />
+          2. Je te propose une structure et un devis simple.<br />
+          3. On construit étape par étape, avec validation.<br />
+          4. Tu reçois un livrable prêt à utiliser.
         </p>
       </div>
     </section>
@@ -1726,6 +1840,7 @@
     </script>
 
     <footer style="text-align: center; padding: 2rem 0; margin-top: 2rem">
+      <!-- BOOKMARK: FOOTER_LEGAL_LINK -->
       <a
         href="../Legal/Index.html"
         style="
@@ -1740,6 +1855,59 @@
         >Mentions Légales &amp; Confidentialité</a
       >
     </footer>
+    <div id="image-overlay" class="image-overlay" aria-hidden="true">
+      <div class="image-overlay-inner">
+        <button
+          type="button"
+          id="image-overlay-close"
+          class="image-overlay-close"
+          aria-label="Fermer l'image">
+          ×
+        </button>
+        <img id="image-overlay-preview" src="" alt="" />
+      </div>
+    </div>
+    <script>
+      const imageOverlay = document.getElementById("image-overlay");
+      const imageOverlayPreview = document.getElementById("image-overlay-preview");
+      const imageOverlayClose = document.getElementById("image-overlay-close");
+      const projectImageLinks = document.querySelectorAll("#projets .project-visual a");
+
+      function openImageOverlay(src, alt) {
+        imageOverlayPreview.src = src;
+        imageOverlayPreview.alt = alt || "Aperçu";
+        imageOverlay.classList.add("is-open");
+        imageOverlay.setAttribute("aria-hidden", "false");
+      }
+
+      function closeImageOverlay() {
+        imageOverlay.classList.remove("is-open");
+        imageOverlay.setAttribute("aria-hidden", "true");
+        imageOverlayPreview.src = "";
+      }
+
+      projectImageLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          const img = link.querySelector("img");
+          openImageOverlay(link.getAttribute("href"), img ? img.alt : "");
+        });
+      });
+
+      imageOverlay.addEventListener("click", (event) => {
+        if (event.target === imageOverlay) {
+          closeImageOverlay();
+        }
+      });
+
+      imageOverlayClose.addEventListener("click", closeImageOverlay);
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && imageOverlay.classList.contains("is-open")) {
+          closeImageOverlay();
+        }
+      });
+    </script>
     <script type="module" src="../asset/scripts/hero-cube.js"></script>
   </body>
 </html>
