@@ -1,4 +1,4 @@
-/* BOOKMARK: CSS_PAGE_BACKGROUND */
+/* BOOKMARK: CSS_FOND_PAGE */
 body {
   background: radial-gradient(circle, #1a0b2e, #000);
   color: #e0e0e0;
@@ -10,7 +10,7 @@ body {
   margin: 0;
 }
 
-/* BOOKMARK: CSS_GLASS_CARD */
+/* BOOKMARK: CSS_CARTE_VERRE */
 .glass-card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(15px);
@@ -22,11 +22,11 @@ body {
   width: 90%;
 }
 
-/* BOOKMARK: CSS_TITLE_PRIMARY */
+/* BOOKMARK: CSS_TITRE_PRINCIPAL */
 h1 {
   color: #00d4ff;
 }
-/* BOOKMARK: CSS_LINK_PRIMARY */
+/* BOOKMARK: CSS_LIEN_PRINCIPAL */
 a {
   color: #00d4ff;
   text-decoration: none;
@@ -36,9 +36,10 @@ a {
 a:hover {
   text-decoration: underline;
 }
-/* BOOKMARK: CSS_DIVIDER */
+/* BOOKMARK: CSS_SEPARATEUR */
 hr {
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin: 20px 0;
 }
+

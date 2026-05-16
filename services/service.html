@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap"
       rel="stylesheet" />
     <style>
-      /* BOOKMARK: CSS_ROOT_TOKENS */
+      /* BOOKMARK: CSS_JETONS_RACINE */
       :root {
         color-scheme: dark;
         --bg-black: #020304;
@@ -60,7 +60,7 @@
 
       /* Dark architectural surface — felt more than seen */
 
-      /* BOOKMARK: CSS_HERO_BLOCK */
+      /* BOOKMARK: CSS_BLOC_HERO */
       .hero {
         position: relative;
         min-height: 100svh;
@@ -139,7 +139,7 @@
         overflow: hidden;
       }
 
-      /* BOOKMARK: CSS_BACK_CUBE */
+      /* BOOKMARK: CSS_CUBE_RETOUR */
       .back-cube {
         position: fixed;
         right: 1.2rem;
@@ -774,7 +774,7 @@
 
       /* Project section refactor:
          two real project rows with visual, copy, and status. */
-      /* BOOKMARK: CSS_PROJECTS_BASE */
+      /* BOOKMARK: CSS_BASE_PROJETS */
       .project-list {
         width: 100%;
         display: flex;
@@ -907,7 +907,7 @@
       }
 
       /* Services section card layout only */
-      /* BOOKMARK: CSS_SERVICES_GRID */
+      /* BOOKMARK: CSS_GRILLE_SERVICES */
       #services .project-list {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -936,7 +936,7 @@
         }
       }
 
-      /* BOOKMARK: CSS_PROJETS_GRID */
+      /* BOOKMARK: CSS_GRILLE_PROJETS */
       #projets .project-list {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1019,7 +1019,7 @@
         }
       }
 
-      /* BOOKMARK: CSS_IMAGE_OVERLAY */
+      /* BOOKMARK: CSS_SUPERPOSITION_IMAGE */
       .image-overlay {
         position: fixed;
         inset: 0;
@@ -1317,7 +1317,7 @@
       }
 
       /* ─── Contact section ────────────────────────────────────── */
-      /* BOOKMARK: CSS_CONTACT_BLOCK */
+      /* BOOKMARK: CSS_BLOC_CONTACT */
       .contact-floor {
         background: linear-gradient(
           0deg,
@@ -1509,16 +1509,16 @@
     </style>
   </head>
   <body>
-    <!-- BOOKMARK: HERO_START -->
+    <!-- BOOKMARK: HERO_DEBUT -->
     <section id="hero" class="hero">
-      <!-- BOOKMARK: HERO_LOGO_ASSET -->
+      <!-- BOOKMARK: HERO_RESSOURCE_LOGO -->
       <img
         class="hero-logo"
         src="/asset/branding/logo-ph3ynyx.png"
         alt="Ph3yNyx logo"
         onerror="this.style.display = 'none'" />
 
-      <!-- BOOKMARK: HERO_BG_ASSETS -->
+      <!-- BOOKMARK: HERO_RESSOURCES_FOND -->
       <div class="hero-bg">
         <picture>
           <source
@@ -1540,7 +1540,7 @@
             <h1 class="title hero-title">Ph3yNyx.Studio</h1>
             <p class="hero-subtitle">Services</p>
             <nav class="hero-band">
-              <a href="#services">Services</a>
+              <a href="../index.html">Accueil</a>
               <a href="#projets">Projets</a>
               <a href="#process">Process</a>
               <a href="#contact">Contact</a>
@@ -1576,7 +1576,7 @@
           </p>
         </div>
         <div class="project-list">
-          <!-- BOOKMARK: SERVICE_CARD_1 -->
+          <!-- BOOKMARK: CARTE_SERVICE_1 -->
           <article class="project-card">
             <div class="project-copy">
               <div class="project-copy-head">
@@ -1592,7 +1592,7 @@
               </p>
             </div>
           </article>
-          <!-- BOOKMARK: SERVICE_CARD_2 -->
+          <!-- BOOKMARK: CARTE_SERVICE_2 -->
           <article class="project-card">
             <div class="project-copy">
               <div class="project-copy-head">
@@ -1607,7 +1607,7 @@
               </p>
             </div>
           </article>
-          <!-- BOOKMARK: SERVICE_CARD_3 -->
+          <!-- BOOKMARK: CARTE_SERVICE_3 -->
           <article class="project-card">
             <div class="project-copy">
               <div class="project-copy-head">
@@ -1641,9 +1641,9 @@
           </span>
         </div>
         <div class="project-list">
-          <!-- BOOKMARK: PROJECT_CARD_LUN4RMOOD -->
+          <!-- BOOKMARK: CARTE_PROJET_LUN4RMOOD -->
           <article class="project-card">
-            <!-- BOOKMARK: PROJECT_ASSETS_LUN4RMOOD -->
+            <!-- BOOKMARK: RESSOURCES_PROJET_LUN4RMOOD -->
             <div class="project-visual">
               <a href="/asset/lun4rmood-screen.png" target="_self">
                 <img
@@ -1678,9 +1678,9 @@
             </div>
           </article>
 
-          <!-- BOOKMARK: PROJECT_CARD_ASTR4L -->
+          <!-- BOOKMARK: CARTE_PROJET_ASTR4L -->
           <article class="project-card">
-            <!-- BOOKMARK: PROJECT_ASSETS_ASTR4L -->
+            <!-- BOOKMARK: RESSOURCES_PROJET_ASTR4L -->
             <div class="project-visual project-visual-grid">
               <a href="/asset/astr4l-screen-2.png" target="_self">
                 <img
@@ -1721,7 +1721,7 @@
               </p>
               <div class="mt-6">
                 <a
-                  href="../eng1ne/index.html"
+                  href="../astr4ldesign/index.html"
                   class="inline-flex items-center px-4 py-2 text-sm border border-white/20 rounded-lg hover:bg-white/10 transition-colors duration-300">
                   → Explorer
                 </a>
@@ -1840,7 +1840,7 @@
     </script>
 
     <footer style="text-align: center; padding: 2rem 0; margin-top: 2rem">
-      <!-- BOOKMARK: FOOTER_LEGAL_LINK -->
+      <!-- BOOKMARK: PIED_LIEN_LEGAL -->
       <a
         href="../Legal/Index.html"
         style="
@@ -1911,3 +1911,5 @@
     <script type="module" src="../asset/scripts/hero-cube.js"></script>
   </body>
 </html>
+
+
