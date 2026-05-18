@@ -494,6 +494,17 @@
         overflow-wrap: normal;
         transform: translateY(-20px);
       }
+
+      /* BOOKMARK: ZONE_TITRE_HERO_3_CHROME */
+      .hero-title-chrome {
+  color: #213f47;
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 0.75),
+    0 0 12px rgba(137, 236, 255, 0.55),
+    0 0 22px rgba(58, 106, 116, 0.65),
+    0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
       .hero-subtitle {
         margin-top: 0.35rem;
         font-size: clamp(0.72rem, 2.5vw, 0.95rem);
@@ -1016,6 +1027,38 @@
       @media (max-width: 767px) {
         #projets .project-list {
           grid-template-columns: 1fr;
+        }
+
+        #projets .project-visual:not(.project-visual-grid),
+        #projets .project-visual.project-visual-grid {
+          width: 100%;
+          max-width: 100%;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          overflow: hidden;
+          gap: 0.5rem;
+          justify-content: flex-start;
+        }
+
+        #projets .project-visual:not(.project-visual-grid) a,
+        #projets .project-visual.project-visual-grid a,
+        #projets .project-visual.project-visual-grid a:nth-child(n) {
+          flex: 1 1 0;
+          min-width: 0;
+          width: auto;
+          margin: 0;
+        }
+
+        #projets .project-visual:not(.project-visual-grid) a:first-child {
+          flex: 0.5 1 0;
+        }
+
+        #projets .project-visual:not(.project-visual-grid) a img,
+        #projets .project-visual.project-visual-grid a img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
         }
       }
 
@@ -1586,7 +1629,8 @@
           <div id="canvas-container" aria-hidden="true"></div>
 
           <div class="hero-copy">
-            <h1 class="title hero-title">Ph3yNyx.Studio</h1>
+            <!-- BOOKMARK: TEXTE_TITRE_HERO_3_CHROME -->
+            <h1 class="title hero-title">Ph<span class="hero-title-chrome">3</span>yNyx.Studio</h1>
             <p class="hero-subtitle">Services</p>
             <nav class="hero-band">
               <a href="../index.html">Accueil</a>
@@ -1621,7 +1665,11 @@
             Services
           </span>
           <p class="project-lead mb-5 md:mb-7">
-            Des livrables simples pour des besoins concrets.
+            Ce que je peux faire pour toi
+          </p>
+          <p class="project-description">
+            Je t'aide à mettre de l'ordre dans tes idées et à construire quelque
+            chose de simple, de léger et qui fonctionne vraiment.
           </p>
         </div>
         <div class="project-list">
@@ -1629,15 +1677,12 @@
           <article class="project-card">
             <div class="project-copy">
               <div class="project-copy-head">
-                <h3 class="project-name">Site vitrine</h3>
+                <h3 class="project-name">Mettre de l'ordre</h3>
               </div>
               <p class="project-description">
-                Freelance, artisan, thérapeute, coach ou petite entreprise
-                locale.
-              </p>
-              <p class="project-description">
-                Page d’accueil, à propos, services, contact. Design sobre et
-                responsive. Hébergement, mise en ligne et livraison autonome.
+                Tu as trop d'idées, trop de fichiers ou trop de projets en même
+                temps ? Je t'aide à clarifier et organiser pour que tu puisses
+                enfin avancer avec structure.
               </p>
             </div>
           </article>
@@ -1645,14 +1690,12 @@
           <article class="project-card">
             <div class="project-copy">
               <div class="project-copy-head">
-                <h3 class="project-name">Landing page</h3>
+                <h3 class="project-name">Construire une première version</h3>
               </div>
               <p class="project-description">
-                Lancement d’une offre, promotion ou projet précis à présenter.
-              </p>
-              <p class="project-description">
-                Une page orientée action avec message simple et CTA direct.
-                Rapide à produire et facile à partager.
+                Tu as une idée d'app, de site ou d'outil mais tu ne sais pas par
+                où commencer ? Je construis la version simple qui fonctionne —
+                rien d'inutile, juste ce qu'il faut pour démarrer.
               </p>
             </div>
           </article>
@@ -1660,14 +1703,12 @@
           <article class="project-card">
             <div class="project-copy">
               <div class="project-copy-head">
-                <h3 class="project-name">Refonte légère + IA</h3>
+                <h3 class="project-name">Créer une interface propre</h3>
               </div>
               <p class="project-description">
-                Site vieillissant ou confus à simplifier et moderniser.
-              </p>
-              <p class="project-description">
-                Mise à jour visuelle et textuelle, avec aide IA pour structurer
-                les contenus si pertinent.
+                Tu veux quelque chose de calme, précis et visuellement fort ? Je
+                conçois des interfaces et des pages qui ont du caractère — comme
+                ce site.
               </p>
             </div>
           </article>
