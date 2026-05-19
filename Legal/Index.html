@@ -3,279 +3,688 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Privacy Policy – Lun4rMood</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Mentions légales & Confidentialité — PH3YNYX.Studio</title>
+
     <style>
-      /* BOOKMARK: CSS_BLOC_PHASE_LEGALE */
-      .phase-block {
-        border-radius: 14px;
-        padding: 18px 20px;
-        margin: 14px 0;
+      :root {
+        --bg-base: #02050d;
+        --bg-card: rgba(7, 12, 24, 0.94);
+        --bg-soft: rgba(255, 255, 255, 0.035);
+        --border-soft: rgba(137, 236, 255, 0.18);
+        --text-main: #eef4ff;
+        --text-muted: rgba(238, 244, 255, 0.68);
+        --cyan: #00e5ff;
+        --cyan-soft: rgba(0, 229, 255, 0.12);
+        --violet: #a78bfa;
+        --violet-soft: rgba(167, 139, 250, 0.12);
+        --yellow: #facc15;
+        --yellow-soft: rgba(250, 204, 21, 0.09);
+        --radius-lg: 28px;
+        --radius-md: 16px;
       }
-      /* BOOKMARK: CSS_PHASE_LEGALE_V1 */
-      .phase-v1 {
-        border-left: 4px solid #00ffcc;
-        background: rgba(0, 255, 204, 0.06);
+
+      * {
+        box-sizing: border-box;
       }
-      /* BOOKMARK: CSS_PHASE_LEGALE_V2 */
-      .phase-v2 {
-        border-left: 4px solid #a78bfa;
-        background: rgba(167, 139, 250, 0.06);
+
+      html {
+        scroll-behavior: smooth;
       }
-      .phase-label {
-        font-size: 0.82rem;
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background:
+          radial-gradient(
+            circle at 8% 18%,
+            rgba(0, 229, 255, 0.055),
+            transparent 24%
+          ),
+          radial-gradient(
+            circle at 92% 24%,
+            rgba(167, 139, 250, 0.05),
+            transparent 28%
+          ),
+          var(--bg-base);
+        color: var(--text-main);
+        line-height: 1.7;
+      }
+
+      a {
+        color: var(--cyan);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .legal-page {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 48px 0;
+      }
+
+      .legal-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--border-soft);
+        border-radius: var(--radius-lg);
+        background: linear-gradient(135deg, rgba(9, 14, 28, 0.96), rgba(3, 6, 14, 0.985));
+        box-shadow:
+          0 0 28px rgba(0, 229, 255, 0.045),
+          0 0 48px rgba(167, 139, 250, 0.04);
+        padding: clamp(24px, 5vw, 56px);
+      }
+
+      .legal-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          circle at 50% 0%,
+          rgba(0, 229, 255, 0.13),
+          transparent 30%
+        );
+        opacity: 0.8;
+      }
+
+      .legal-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 28px;
+        font-size: 0.95rem;
+        color: var(--cyan);
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(2rem, 5vw, 3.7rem);
+        letter-spacing: -0.04em;
+      }
+
+      h2 {
+        margin: 54px 0 18px;
+        font-size: clamp(1.45rem, 3vw, 2rem);
+      }
+
+      h3 {
+        margin: 34px 0 12px;
+        font-size: 1.18rem;
+      }
+
+      p {
+        margin: 0 0 16px;
+        color: var(--text-muted);
+      }
+
+      small {
+        color: var(--text-muted);
+      }
+
+      ul {
+        margin: 10px 0 20px;
+        padding-left: 22px;
+        color: var(--text-muted);
+      }
+
+      li {
+        margin: 6px 0;
+      }
+
+      strong {
+        color: var(--text-main);
+      }
+
+      .intro {
+        max-width: 760px;
+        font-size: 1.05rem;
+      }
+
+      .legal-index {
+        margin: 30px 0 40px;
+        padding: 20px;
+        border: 1px solid var(--border-soft);
+        border-radius: var(--radius-md);
+        background: rgba(0, 229, 255, 0.045);
+      }
+
+      .legal-index-title {
+        margin: 0 0 12px;
+        color: var(--text-main);
         font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        margin-bottom: 8px;
       }
-      .phase-v1 .phase-label { color: #00ffcc; }
-      .phase-v2 .phase-label { color: #a78bfa; }
-      .note-small {
+
+      .legal-index nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .legal-index a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 0.65rem 0.95rem;
+        border: 1px solid rgba(137, 236, 255, 0.18);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.035);
+        color: var(--text-main);
         font-size: 0.9rem;
-        opacity: 0.65;
-        font-style: italic;
-        margin-top: 12px;
       }
-      /* BOOKMARK: CSS_RESUME_LEGAL_EN */
+
+      .legal-index a:hover {
+        border-color: rgba(0, 229, 255, 0.45);
+        color: var(--cyan);
+        text-decoration: none;
+      }
+
+      .project-section {
+        margin-top: 42px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .phase-block {
+        border-radius: var(--radius-md);
+        padding: 20px;
+        margin: 18px 0;
+      }
+
+      .phase-v1 {
+        border-left: 4px solid var(--cyan);
+        background: var(--cyan-soft);
+      }
+
+      .phase-v2 {
+        border-left: 4px solid var(--violet);
+        background: var(--violet-soft);
+      }
+
       .en-summary {
-        border-left: 4px solid #facc15;
-        background: rgba(250, 204, 21, 0.06);
-        border-radius: 14px;
-        padding: 18px 20px;
-        margin: 14px 0;
+        border-left: 4px solid var(--yellow);
+        background: var(--yellow-soft);
       }
-      .en-summary .phase-label { color: #facc15; }
+
+      .phase-label {
+        margin-bottom: 10px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .phase-v1 .phase-label {
+        color: var(--cyan);
+      }
+
+      .phase-v2 .phase-label {
+        color: var(--violet);
+      }
+
+      .en-summary .phase-label {
+        color: var(--yellow);
+      }
+
+      .note-small {
+        margin-top: 12px;
+        font-size: 0.92rem;
+        color: var(--text-muted);
+        font-style: italic;
+      }
+
+      .placeholder-card {
+        border: 1px dashed rgba(255, 255, 255, 0.18);
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.025);
+        padding: 18px 20px;
+        margin: 16px 0;
+      }
+
+      .footer-note {
+        margin-top: 46px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 720px) {
+        .legal-page {
+          width: min(100% - 20px, 1120px);
+          padding: 20px 0;
+        }
+
+        .legal-card {
+          padding: 22px;
+          border-radius: 22px;
+        }
+
+        .legal-index nav {
+          flex-direction: column;
+        }
+
+        .legal-index a {
+          width: 100%;
+        }
+      }
     </style>
   </head>
 
-  <body class="legal-page">
-    <!-- BOOKMARK: LEGAL_PAGE_DEBUT -->
-    <!-- BOOKMARK: LEGAL_CARTE_DEBUT -->
-    <main class="legal-card">
-      <!-- BOOKMARK: LIEN_RETOUR_NAV -->
-      <nav>
-        <a href="../index.html" style="color: #00ffff">← Retour au Hub</a>
-      </nav>
+  <body>
+    <main class="legal-page">
+      <article class="legal-card">
+        <div class="legal-content">
+          <a class="back-link" href="../index.html">← Retour au Hub</a>
 
-      <!-- BOOKMARK: LEGAL_TITRE_PRINCIPAL -->
-      <h1>Mentions Légales &amp; Politique de Confidentialité</h1>
-      <p><small>Dernière mise à jour : 28 avril 2026</small></p>
+          <header>
+            <h1>Mentions légales & Confidentialité</h1>
+            <p><small>Dernière mise à jour : 18 mai 2026</small></p>
+            <p class="intro">
+              Cette page regroupe les informations légales et les politiques de
+              confidentialité associées aux projets de PH3YNYX.Studio.
+            </p>
+          </header>
 
-      <!-- BOOKMARK: LEGAL_SECTION_IDENTIFICATION -->
-      <section>
-        <h3>1. Identification de l'éditeur</h3>
-        <p>
-          L'application <strong>Lun4rMood</strong> (également désignée <strong>LunarMood</strong>)
-          est éditée par <strong>Ph3yNyx.Studio</strong>, projet indépendant et non rattaché
-          à une entreprise, une société mère ou un groupe commercial.
-        </p>
-        <p>
-          <strong>Éditeur :</strong> Ph3yNyx.Studio<br />
-          <strong>Statut :</strong> Projet indépendant<br />
-          <strong>Localisation :</strong> Gatineau, Québec, Canada<br />
-          <strong>Contact officiel :</strong>
-          <a href="mailto:ph3ynyx.studio@gmail.com" style="color:#00ffff">ph3ynyx.studio@gmail.com</a><br />
-          <strong>Site web :</strong> hébergé sur GitHub Pages, service fourni par GitHub, Inc., États-Unis
-        </p>
-      </section>
+          <aside class="legal-index" aria-label="Index des sections légales">
+            <p class="legal-index-title">Accès rapide</p>
+            <nav>
+              <a href="#lun4rmood">LUN4RMOOD</a>
+              <a href="#astr4l-design">Astr4l Design</a>
+              <a href="#ph3ynyx-studio">Site PH3YNYX.Studio</a>
+              <a href="#contact">Contact</a>
+            </nav>
+          </aside>
 
-      <!-- BOOKMARK: LEGAL_SECTION_NATURE_SERVICE -->
-      <section>
-        <h3>2. Nature du service</h3>
-        <p>
-          Lun4rMood est une application de bien-être et d'auto-observation personnelle.
-        </p>
-        <p>
-          Elle permet à l'utilisateur de suivre certaines tendances, notamment :
-        </p>
-        <ul>
-          <li>l'humeur,</li>
-          <li>l'énergie,</li>
-          <li>les habitudes quotidiennes.</li>
-        </ul>
-        <p>
-          Lun4rMood ne constitue en aucun cas un dispositif médical.
-          Elle ne fournit aucun diagnostic médical, psychiatrique ou psychologique,
-          ne propose aucun traitement et ne remplace pas un professionnel de santé qualifié.
-        </p>
-        <p>
-          Les contenus, indications et suggestions éventuellement affichés dans
-          l'application sont fournis à titre informatif uniquement.
-        </p>
-      </section>
+          <section id="lun4rmood" class="project-section">
+            <h2>LUN4RMOOD — Politique de confidentialité</h2>
 
-      <!-- BOOKMARK: LEGAL_SECTION_CONFIDENTIALITE -->
-      <section>
-        <h3>3. Politique de confidentialité</h3>
-        <p>
-          Ph3yNyx.Studio adopte une approche centrée sur la souveraineté numérique,
-          la minimisation des données et le fonctionnement local.
-        </p>
+            <section>
+              <h3>1. Identification de l'éditeur</h3>
+              <p>
+                L'application <strong>LUN4RMOOD</strong> est éditée par
+                <strong>PH3YNYX.Studio</strong>, projet indépendant et non
+                rattaché à une entreprise, une société mère ou un groupe
+                commercial.
+              </p>
 
-        <div class="phase-block phase-v1">
-          <div class="phase-label">3.1 — Version actuelle</div>
-          <p>
-            Dans sa version actuelle, Lun4rMood fonctionne selon un modèle <em>offline-first</em>.
-          </p>
-          <ul>
-            <li>Toutes les données sont traitées localement sur l'appareil de l'utilisateur.</li>
-            <li>Aucun compte utilisateur n'est requis.</li>
-            <li>Aucune donnée personnelle n'est collectée par Ph3yNyx.Studio via l'application.</li>
-            <li>Aucune donnée n'est transmise à des serveurs contrôlés par Ph3yNyx.Studio.</li>
-            <li>Aucune synchronisation cloud n'est active.</li>
-            <li>Aucun système d'analytique distant, de suivi publicitaire ou de profilage n'est utilisé.</li>
-            <li>Aucune donnée personnelle n'est accessible par Ph3yNyx.Studio à aucun moment.</li>
-          </ul>
-          <p>
-            Ph3yNyx.Studio ne collecte, ne stocke, ne partage et ne traite aucune donnée
-            personnelle via l'application dans sa version actuelle.
-          </p>
+              <p>
+                <strong>Éditeur :</strong> PH3YNYX.Studio<br />
+                <strong>Statut :</strong> Projet indépendant<br />
+                <strong>Localisation :</strong> Gatineau, Québec, Canada<br />
+                <strong>Contact officiel :</strong>
+                <a href="mailto:ph3ynyx.studio@gmail.com">
+                  ph3ynyx.studio@gmail.com
+                </a>
+                <br />
+                <strong>Site web :</strong> hébergé sur GitHub Pages, service
+                fourni par GitHub, Inc., États-Unis.
+              </p>
+            </section>
+
+            <section>
+              <h3>2. Nature du service</h3>
+              <p>
+                LUN4RMOOD est une application de bien-être et d'auto-observation
+                personnelle.
+              </p>
+
+              <p>
+                Elle permet à l'utilisateur de suivre certaines tendances,
+                notamment :
+              </p>
+
+              <ul>
+                <li>l'humeur,</li>
+                <li>l'énergie,</li>
+                <li>les habitudes quotidiennes,</li>
+                <li>les observations personnelles liées au cycle lunaire.</li>
+              </ul>
+
+              <p>
+                LUN4RMOOD ne constitue pas un dispositif médical. Elle ne
+                fournit aucun diagnostic médical, psychiatrique ou
+                psychologique, ne propose aucun traitement et ne remplace pas un
+                professionnel de santé qualifié.
+              </p>
+
+              <p>
+                Les contenus, indications et suggestions éventuellement affichés
+                dans l'application sont fournis à titre informatif uniquement.
+              </p>
+            </section>
+
+            <section>
+              <h3>3. Politique de confidentialité</h3>
+              <p>
+                PH3YNYX.Studio adopte une approche centrée sur le contrôle des
+                données, la minimisation des informations collectées et le
+                fonctionnement local.
+              </p>
+
+              <div class="phase-block phase-v1">
+                <div class="phase-label">3.1 — Version actuelle</div>
+
+                <p>
+                  Dans sa version actuelle, LUN4RMOOD fonctionne selon un modèle
+                  <em>offline-first</em>.
+                </p>
+
+                <ul>
+                  <li>
+                    Toutes les données sont traitées localement sur l'appareil
+                    de l'utilisateur.
+                  </li>
+                  <li>Aucun compte utilisateur n'est requis.</li>
+                  <li>
+                    Aucune donnée personnelle n'est collectée par PH3YNYX.Studio
+                    via l'application.
+                  </li>
+                  <li>
+                    Aucune donnée n'est transmise à des serveurs contrôlés par
+                    PH3YNYX.Studio.
+                  </li>
+                  <li>Aucune synchronisation cloud n'est active.</li>
+                  <li>
+                    Aucun système d'analytique distant, de suivi publicitaire ou
+                    de profilage n'est utilisé.
+                  </li>
+                  <li>
+                    Aucune donnée personnelle n'est accessible par
+                    PH3YNYX.Studio à aucun moment.
+                  </li>
+                </ul>
+
+                <p>
+                  PH3YNYX.Studio ne collecte, ne stocke, ne partage et ne traite
+                  aucune donnée personnelle via l'application dans sa version
+                  actuelle.
+                </p>
+              </div>
+
+              <p>
+                <strong>3.2. Hébergement du site</strong><br />
+                Le site associé au projet peut être hébergé sur GitHub Pages.
+                Dans ce cadre, GitHub, Inc. peut traiter certaines données
+                techniques nécessaires au fonctionnement et à la sécurité de son
+                infrastructure, notamment des journaux techniques ou des
+                adresses IP. Ces traitements relèvent de GitHub, Inc. et ne sont
+                pas effectués par PH3YNYX.Studio.
+              </p>
+
+              <div class="phase-block phase-v2">
+                <div class="phase-label">3.3 — Évolutions futures</div>
+
+                <p>
+                  Toute fonctionnalité future impliquant, directement ou
+                  indirectement :
+                </p>
+
+                <ul>
+                  <li>une connexion réseau,</li>
+                  <li>une synchronisation,</li>
+                  <li>un service externe,</li>
+                  <li>une collecte de données,</li>
+                  <li>
+                    ou une utilisation d'intelligence artificielle connectée,
+                  </li>
+                </ul>
+
+                <p>fera l'objet :</p>
+
+                <ul>
+                  <li>d'une information préalable lisible,</li>
+                  <li>d'une mise à jour de la présente politique,</li>
+                  <li>
+                    et, lorsque requis, d'un consentement explicite de
+                    l'utilisateur.
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <section>
+              <h3>4. Données, conservation et suppression</h3>
+
+              <p>
+                Dans la version actuelle, les données saisies par l'utilisateur
+                sont enregistrées uniquement sur l'appareil utilisé.
+              </p>
+
+              <ul>
+                <li>
+                  Elles restent présentes jusqu'à leur suppression manuelle par
+                  l'utilisateur.
+                </li>
+                <li>Elles peuvent être supprimées via l'application.</li>
+                <li>
+                  Elles peuvent également disparaître lors de la désinstallation
+                  de l'application, selon le fonctionnement du système
+                  d'exploitation.
+                </li>
+              </ul>
+
+              <p>
+                PH3YNYX.Studio n'a aucun accès aux données locales de
+                l'utilisateur.
+              </p>
+            </section>
+
+            <section>
+              <h3>5. Sécurité</h3>
+
+              <p>
+                PH3YNYX.Studio applique une approche de sécurité fondée sur :
+              </p>
+
+              <ul>
+                <li>la minimisation des données,</li>
+                <li>l'absence de collecte inutile,</li>
+                <li>le traitement local prioritaire,</li>
+                <li>et la simplicité technique.</li>
+              </ul>
+
+              <p>
+                L'utilisateur reste maître des données qu'il saisit dans
+                l'application. Les mesures de sécurité pourront évoluer afin de
+                rester adaptées aux besoins réels du produit et aux bonnes
+                pratiques applicables.
+              </p>
+            </section>
+
+            <section>
+              <h3>6. Propriété intellectuelle</h3>
+
+              <p>
+                L'ensemble des éléments composant l'application et le site
+                associé, notamment les textes, le design, les éléments
+                graphiques, les logos et le code, est protégé par les règles
+                applicables en matière de propriété intellectuelle.
+              </p>
+
+              <p>
+                Sauf autorisation écrite préalable, toute reproduction,
+                représentation, modification, adaptation ou exploitation non
+                autorisée est interdite.
+              </p>
+            </section>
+
+            <section>
+              <h3>7. Limitation de responsabilité</h3>
+
+              <p>
+                PH3YNYX.Studio s'efforce de fournir une application fiable,
+                cohérente et conforme à l'usage annoncé. Toutefois, l'éditeur ne
+                saurait être tenu responsable :
+              </p>
+
+              <ul>
+                <li>d'erreurs techniques,</li>
+                <li>d'interruptions temporaires,</li>
+                <li>
+                  de dysfonctionnements liés à l'appareil de l'utilisateur,
+                </li>
+                <li>
+                  ou des limitations propres à un service d'hébergement tiers.
+                </li>
+              </ul>
+
+              <p>
+                LUN4RMOOD ne remplace pas un avis médical, psychologique ou
+                psychiatrique. En cas de détresse, d'urgence ou de risque pour
+                la santé, l'utilisateur doit consulter un professionnel qualifié
+                ou contacter les services d'urgence appropriés.
+              </p>
+            </section>
+
+            <section>
+              <h3>8. Permissions de l'application</h3>
+
+              <p>
+                Dans sa version actuelle, LUN4RMOOD ne requiert aucune
+                permission sensible.
+              </p>
+
+              <p>
+                L'application ne collecte aucune donnée personnelle et ne
+                nécessite aucun accès à des fonctionnalités système critiques.
+              </p>
+
+              <p>
+                L'application ne demande aucune autorisation d'accès aux données
+                sensibles de l'appareil, comme les contacts, la localisation, la
+                caméra ou le microphone.
+              </p>
+
+              <p>
+                Toute demande de permission dans une version future sera
+                expliquée, justifiée et soumise au consentement explicite de
+                l'utilisateur lorsque requis.
+              </p>
+            </section>
+
+            <section>
+              <h3>9. Conformité réglementaire</h3>
+
+              <p>
+                Conformément aux lois applicables, notamment le Règlement
+                Général sur la Protection des Données (RGPD) et les lois
+                canadiennes sur la protection des renseignements personnels,
+                aucune donnée personnelle n'est collectée dans la version
+                actuelle de l'application.
+              </p>
+
+              <p class="note-small">
+                Cette page fournit une information de bonne foi sur le
+                fonctionnement du produit. Elle ne constitue pas un avis
+                juridique.
+              </p>
+            </section>
+
+            <section>
+              <h3>10. English summary</h3>
+
+              <div class="phase-block en-summary">
+                <div class="phase-label">Privacy Policy — English Summary</div>
+
+                <p>
+                  LUN4RMOOD does not collect, store, share, or transmit any
+                  personal data in its current version. All user data remains
+                  locally on the user's device and is never accessible by the
+                  developer.
+                </p>
+
+                <p>
+                  No account is required, no cloud synchronization is active,
+                  and no advertising tracking or remote analytics system is used
+                  by PH3YNYX.Studio through the application.
+                </p>
+
+                <p>
+                  LUN4RMOOD is not a medical device and does not provide
+                  medical, psychological, or psychiatric diagnosis, treatment,
+                  or advice.
+                </p>
+              </div>
+            </section>
+          </section>
+
+          <section id="astr4l-design" class="project-section">
+            <h2>Astr4l Design — Confidentialité</h2>
+
+            <div class="placeholder-card">
+              <p>
+                La politique de confidentialité complète d'Astr4l Design sera
+                ajoutée lorsque le produit sera publié ou rendu disponible au
+                public.
+              </p>
+
+              <p>
+                Intention actuelle : Astr4l Design est pensé comme un outil de
+                création visuelle local-first. Les informations finales sur le
+                stockage, les exports, les permissions et les éventuels services
+                externes seront précisées avant toute publication officielle.
+              </p>
+            </div>
+          </section>
+
+          <section id="ph3ynyx-studio" class="project-section">
+            <h2>Site web PH3YNYX.Studio — Confidentialité</h2>
+            <p>
+              PH3YNYX.Studio est le site vitrine principal du projet. Il
+              présente des projets numériques, des services de création web, des
+              MVP, des interfaces et des outils local-first.
+            </p>
+
+            <p>
+              Le site vitrine ne demande pas de compte utilisateur et ne
+              collecte pas volontairement de données personnelles via un
+              formulaire natif dans sa version actuelle.
+            </p>
+
+            <p>
+              Si un lien externe est utilisé pour contacter PH3YNYX.Studio,
+              notamment par courriel ou via une plateforme tierce, les règles de
+              confidentialité du service concerné peuvent s'appliquer.
+            </p>
+          </section>
+
+          <section id="contact" class="project-section">
+            <h2>Contact</h2>
+
+            <p>
+              Pour toute question relative à cette page, à la confidentialité ou
+              à un projet PH3YNYX.Studio :
+              <a href="mailto:ph3ynyx.studio@gmail.com">
+                ph3ynyx.studio@gmail.com
+              </a>
+            </p>
+          </section>
+
+          <p class="footer-note">© PH3YNYX.Studio — Tous droits réservés.</p>
         </div>
-
-        <p>
-          <strong>3.2. Hébergement du site</strong><br />
-          Le site associé au projet peut être hébergé sur GitHub Pages. Dans ce cadre,
-          GitHub, Inc. peut traiter certaines données techniques nécessaires au fonctionnement
-          et à la sécurité de son infrastructure, notamment des journaux techniques ou des adresses IP.
-          Ces traitements relèvent exclusivement de GitHub, Inc. et ne sont pas effectués par Ph3yNyx.Studio.
-        </p>
-
-        <div class="phase-block phase-v2">
-          <div class="phase-label">3.3 — Évolutions futures</div>
-          <p>
-            Toute fonctionnalité future impliquant, directement ou indirectement :
-          </p>
-          <ul>
-            <li>une connexion réseau,</li>
-            <li>une synchronisation,</li>
-            <li>un service externe,</li>
-            <li>une collecte de données,</li>
-            <li>ou une utilisation d'intelligence artificielle connectée,</li>
-          </ul>
-          <p>fera l'objet :</p>
-          <ul>
-            <li>d'une information préalable claire,</li>
-            <li>d'une mise à jour de la présente politique,</li>
-            <li>et, lorsque requis, d'un consentement explicite de l'utilisateur.</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- BOOKMARK: LEGAL_SECTION_CONTACT -->
-      <section>
-        <h3>4. Données, conservation et suppression</h3>
-        <p>
-          Dans la version actuelle, les données saisies par l'utilisateur sont enregistrées
-          uniquement sur l'appareil utilisé.
-        </p>
-        <ul>
-          <li>Elles restent présentes jusqu'à leur suppression manuelle par l'utilisateur.</li>
-          <li>Elles peuvent être supprimées via l'application.</li>
-          <li>Elles peuvent également disparaître lors de la désinstallation de l'application,
-          selon le fonctionnement du système d'exploitation.</li>
-        </ul>
-        <p>Ph3yNyx.Studio n'a aucun accès aux données locales de l'utilisateur.</p>
-      </section>
-
-      <section>
-        <h3>5. Sécurité</h3>
-        <p>
-          Ph3yNyx.Studio applique une approche de sécurité fondée sur :
-        </p>
-        <ul>
-          <li>la minimisation des données,</li>
-          <li>l'absence de collecte inutile,</li>
-          <li>le traitement local prioritaire,</li>
-          <li>et la simplicité technique.</li>
-        </ul>
-        <p>
-          L'utilisateur reste maître des données qu'il saisit dans l'application.
-          Les mesures de sécurité pourront évoluer afin de rester adaptées aux besoins
-          réels du produit et aux bonnes pratiques applicables.
-        </p>
-      </section>
-
-      <section>
-        <h3>6. Propriété intellectuelle</h3>
-        <p>
-          L'ensemble des éléments composant l'application et le site associé, notamment
-          les textes, le design, les éléments graphiques, les logos et le code, est protégé
-          par les règles applicables en matière de propriété intellectuelle.
-        </p>
-        <p>
-          Sauf autorisation écrite préalable, toute reproduction, représentation,
-          modification, adaptation ou exploitation non autorisée est interdite.
-        </p>
-      </section>
-
-      <section>
-        <h3>7. Limitation de responsabilité</h3>
-        <p>
-          Ph3yNyx.Studio s'efforce de fournir une application fiable, cohérente et
-          conforme à l'usage annoncé. Toutefois, l'éditeur ne saurait être tenu responsable :
-        </p>
-        <ul>
-          <li>d'erreurs techniques,</li>
-          <li>d'interruptions temporaires,</li>
-          <li>de dysfonctionnements liés à l'appareil de l'utilisateur,</li>
-          <li>ou des limitations propres à un service d'hébergement tiers.</li>
-        </ul>
-        <p>
-          Lun4rMood ne remplace pas un avis médical, psychologique ou psychiatrique.
-          En cas de détresse, d'urgence ou de risque pour la santé, l'utilisateur doit
-          consulter un professionnel qualifié ou contacter les services d'urgence appropriés.
-        </p>
-      </section>
-
-      <section>
-        <h3>8. Permissions de l'application</h3>
-        <p>
-          Dans sa version actuelle, Lun4rMood ne requiert aucune permission sensible.
-        </p>
-        <p>
-          L'application ne collecte aucune donnée personnelle et ne nécessite aucun
-          accès à des fonctionnalités système critiques.
-        </p>
-        <p>
-          L'application ne demande aucune autorisation d'accès aux données sensibles
-          de l'appareil (contacts, localisation, caméra, microphone, etc.).
-        </p>
-        <p>
-          Toute demande de permission dans une version future sera clairement expliquée,
-          justifiée et soumise au consentement explicite de l'utilisateur.
-        </p>
-      </section>
-
-      <section>
-        <h3>9. Conformité réglementaire</h3>
-        <p>
-          Conformément aux lois applicables, notamment le Règlement Général sur la
-          Protection des Données (RGPD) et les lois canadiennes sur la protection des
-          renseignements personnels, aucune donnée personnelle n'est collectée dans
-          la version actuelle de l'application.
-        </p>
-      </section>
-
-      <section>
-        <h3>10. Contact</h3>
-        <p>
-          Pour toute question relative à cette politique ou à la confidentialité :
-          <a href="mailto:ph3ynyx.studio@gmail.com" style="color:#00ffff">ph3ynyx.studio@gmail.com</a>
-        </p>
-      </section>
-
-      <section>
-        <div class="phase-block en-summary">
-          <div class="phase-label">Privacy Policy (English – Summary)</div>
-          <p>
-            This application does not collect, store, share, or transmit any personal data.
-            All user data remains locally on the device and is never accessible by the developer.
-          </p>
-        </div>
-      </section>
-
+      </article>
     </main>
   </body>
 </html>
-

@@ -32,15 +32,17 @@
         margin: 0;
       }
 
+      /* BOOKMARK: CSS_FOND_NOIR_GLOBAL */
       body {
         font-family: "Manrope", sans-serif;
         background:
           radial-gradient(
-            circle at top,
-            rgba(103, 232, 249, 0.22),
-            transparent 34%
+            circle at 50% 14%,
+            rgba(70, 130, 255, 0.11),
+            rgba(18, 42, 98, 0.06) 22%,
+            transparent 50%
           ),
-          linear-gradient(180deg, #0f1635 0%, #0a1024 45%, #070b18 100%);
+          linear-gradient(180deg, #03060d 0%, #02040a 46%, #010208 100%);
       }
 
       html,
@@ -224,6 +226,358 @@
         box-shadow:
           inset 0 0 0 1px rgba(255, 255, 255, 0.04),
           0 0 24px rgba(137, 236, 255, 0.08);
+      }
+
+      /* BOOKMARK: CSS_BOUTON_CONTACT_FLOTTANT */
+      .contact-flow-trigger {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 1.15rem);
+  right: calc(env(safe-area-inset-right, 0px) + 1.15rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.72rem 1.55rem;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+  border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 255, 255, 0.03) 0%,
+      rgba(0, 255, 255, 0.08) 18%,
+      rgba(0, 255, 255, 0.12) 50%,
+      rgba(0, 255, 255, 0.08) 82%,
+      rgba(0, 255, 255, 0.03) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.02),
+      0 0 22px rgba(0, 255, 255, 0.04);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.94);
+  cursor: pointer;
+  z-index: 90;
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    color 0.28s ease;
+}
+      .contact-flow-trigger::after {
+        content: "↗";
+        font-size: 1.15rem;
+        color: rgba(137, 236, 255, 0.9);
+      }
+
+      .contact-flow-trigger:hover {
+        transform: translateY(-2px);
+          border-color: rgba(137, 236, 255, 0.32);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.03),
+            0 0 28px rgba(0, 255, 255, 0.08);
+        }
+
+      .contact-flow-overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem;
+        background: rgba(3, 8, 12, 0.66);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 140;
+        transition:
+          opacity 0.28s ease,
+          visibility 0.28s ease;
+      }
+
+      .contact-flow-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .contact-flow-card {
+        position: relative;
+        width: min(92vw, 42rem);
+        padding: 1.65rem 1.45rem 1.35rem;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 1rem;
+        background: linear-gradient(
+          180deg,
+          rgba(8, 15, 20, 0.94) 0%,
+          rgba(4, 8, 12, 0.97) 100%
+        );
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.36),
+          0 0 42px rgba(137, 236, 255, 0.08);
+        transform: translateY(14px) scale(0.98);
+        transition: transform 0.28s ease;
+      }
+
+      .contact-flow-overlay.is-open .contact-flow-card {
+        transform: translateY(0) scale(1);
+      }
+
+      .contact-flow-card::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        background: radial-gradient(
+          ellipse at top,
+          rgba(137, 236, 255, 0.09) 0%,
+          rgba(167, 139, 250, 0.05) 36%,
+          transparent 72%
+        );
+        pointer-events: none;
+      }
+
+      .contact-flow-close {
+        position: absolute;
+        top: 0.95rem;
+        right: 0.95rem;
+        width: 2.2rem;
+        height: 2.2rem;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 999px;
+        background: rgba(5, 10, 14, 0.9);
+        color: rgba(255, 255, 255, 0.88);
+        cursor: pointer;
+      }
+
+      .contact-flow-step {
+        display: none;
+      }
+
+      .contact-flow-step.is-active {
+        display: block;
+      }
+
+      .contact-flow-label {
+        display: inline-block;
+        margin-bottom: 0.9rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(137, 236, 255, 0.7);
+      }
+
+      .contact-flow-title {
+        margin: 0;
+        max-width: calc(100% - 3rem);
+        font-size: clamp(1.9rem, 4vw, 2.6rem);
+        line-height: 0.96;
+        letter-spacing: -0.03em;
+        color: rgba(255, 255, 255, 0.94);
+      }
+
+      .contact-flow-choices {
+        margin-top: 1.15rem;
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .contact-flow-choice {
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 0.9rem;
+        align-items: center;
+        padding: 1rem 1rem 0.95rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.95rem;
+        background: rgba(255, 255, 255, 0.02);
+        text-align: left;
+        cursor: pointer;
+        transition:
+          border-color 0.28s ease,
+          background-color 0.28s ease,
+          transform 0.28s ease;
+      }
+
+      .contact-flow-choice:hover {
+        transform: translateY(-2px);
+        border-color: rgba(137, 236, 255, 0.24);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .contact-flow-choice-title {
+        display: block;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1rem;
+        letter-spacing: 0.01em;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .contact-flow-choice-subtitle {
+        display: block;
+        margin-top: 0.35rem;
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.58);
+      }
+
+      .contact-flow-choice-arrow {
+        font-size: 1.2rem;
+        color: rgba(137, 236, 255, 0.72);
+      }
+
+      .contact-flow-confirmed {
+        margin-top: 0.4rem;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(1.4rem, 3vw, 1.95rem);
+        line-height: 1.05;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .contact-flow-text {
+        margin: 1rem 0 0;
+        font-size: 0.96rem;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .contact-flow-contact-list {
+        margin-top: 1.15rem;
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .contact-flow-contact-item {
+        display: grid;
+        gap: 0.5rem;
+        padding: 0.9rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.9rem;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .contact-flow-contact-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(137, 236, 255, 0.66);
+      }
+
+      .contact-flow-contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.65rem;
+      }
+
+      .contact-flow-contact-link {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.88);
+        text-decoration: none;
+      }
+
+      .contact-flow-contact-link:hover {
+        color: rgba(255, 255, 255, 1);
+      }
+
+      .contact-flow-copy {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.38rem 0.72rem;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 999px;
+        background: transparent;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.76);
+        cursor: pointer;
+      }
+
+      .contact-flow-copy-feedback {
+        min-height: 1.2rem;
+        margin-top: 0.8rem;
+        font-size: 0.76rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(137, 236, 255, 0.74);
+      }
+
+      .contact-flow-footer {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .contact-flow-back {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.55rem 0.95rem;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 0.7rem;
+        background: transparent;
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.84);
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        /* BOOKMARK: CSS_BOUTON_CONTACT_FLOTTANT_MOBILE */
+        .contact-flow-trigger {
+          top: calc(env(safe-area-inset-top, 0px) + 0.8rem);
+          right: calc(env(safe-area-inset-right, 0px) + 0.8rem);
+          gap: 0.48rem;
+          min-height: 4rem;
+          padding: 0.95rem 1.25rem;
+          font-size: 0.84rem;
+          letter-spacing: 0.14em;
+        }
+
+        .contact-flow-card {
+          padding: 1.25rem 0.95rem 1rem;
+        }
+
+        .contact-flow-title {
+          max-width: calc(100% - 2.4rem);
+          font-size: clamp(1.55rem, 8vw, 2rem);
+        }
+
+        .contact-flow-choice {
+          padding: 0.9rem 0.9rem 0.85rem;
+        }
+
+        .contact-flow-choice-title {
+          font-size: 0.94rem;
+        }
+
+        .contact-flow-choice-subtitle,
+        .contact-flow-text,
+        .contact-flow-contact-link {
+          font-size: 0.88rem;
+        }
+
+        .contact-flow-contact-row {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .contact-flow-footer {
+          justify-content: stretch;
+        }
+
+        .contact-flow-back {
+          width: 100%;
+        }
       }
 
       .section {
@@ -506,16 +860,43 @@
 }
 
       .hero-subtitle {
-        margin-top: 0.35rem;
-        font-size: clamp(0.72rem, 2.5vw, 0.95rem);
-        letter-spacing: 0.16em;
+        margin-top: 0.45rem;
+        font-size: clamp(0.64rem, 1.7vw, 0.82rem);
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: rgba(#eaf4ff);
+        color: rgba(255, 255, 255, 0.48);
+      }
+
+      .hero-keywords {
+        margin-top: 0.9rem;
+        margin-bottom: 0.2rem;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(0.92rem, 2.2vw, 1.16rem);
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.78);
+        text-wrap: balance;
       }
 
       @media (max-width: 768px) {
         .hero-title {
           font-size: clamp(2.5rem, 8vw, 3rem);
+        }
+
+        .hero-keywords {
+          margin-top: 0.7rem;
+          margin-bottom: 0.15rem;
+          font-size: clamp(0.82rem, 3.6vw, 0.98rem);
+          letter-spacing: 0.1em;
+          line-height: 1.45;
+          padding: 0 1rem;
+        }
+
+        .hero-subtitle {
+          font-size: clamp(0.58rem, 2.6vw, 0.72rem);
+          letter-spacing: 0.1em;
+          line-height: 1.45;
+          padding: 0 1.1rem;
         }
       }
 
@@ -764,9 +1145,24 @@
 
       /* ─── Body text ─────────────────────────────────────────── */
       .who-body {
+        position: relative;
         font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-        border-left: 1px solid rgba(137, 236, 255, 0.1);
+        border-left: 0;
         padding-left: 2rem;
+      }
+
+      .who-body::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.35rem;
+        bottom: 0.35rem;
+        width: 1px;
+        background: rgba(80, 220, 255, 0.42);
+        box-shadow:
+          0 0 4px rgba(80, 220, 255, 0.12),
+          0 0 9px rgba(80, 220, 255, 0.05);
+        pointer-events: none;
       }
 
       .body-fluid-sm {
@@ -793,29 +1189,55 @@
         gap: 1.25rem;
       }
 
+      /* BOOKMARK: CSS_CARTES_GLOW_BLEU */
       .project-card {
-        display: grid;
-        grid-template-columns: 8.5rem minmax(0, 1fr);
-        align-items: start;
-        gap: 1.6rem;
-        padding: 1.35rem 1.2rem;
-        background: linear-gradient(
-          180deg,
-          rgba(12, 18, 24, 0.16) 0%,
-          rgba(7, 12, 16, 0.07) 100%
-        );
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        transition: 0.3s ease;
-      }
+          position: relative;
+          isolation: isolate;
+          display: grid;
+          grid-template-columns: 8.5rem minmax(0, 1fr);
+          align-items: start;
+          gap: 1.6rem;
+          padding: 1.35rem 1.2rem;
+          background: #02040a;
+          border: 1px solid rgba(126, 180, 255, 0.18);
+          box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.02),
+            0 0 34px rgba(70, 130, 255, 0.06),
+            0 0 72px rgba(30, 80, 180, 0.05);
+          transition: 0.3s ease;
+        }
 
-      .project-card:hover {
-        background: rgba(255, 255, 255, 0.03);
-      }
+        .project-card:hover {
+          background: #020611;
+        }
 
-      .project-card + .project-card {
-        margin-top: 10px;
-      }
+        .project-card + .project-card {
+          margin-top: 10px;
+        }
+
+        .vision-layout,
+        .expertise-section,
+        .collab-shell,
+        .contact-shell {
+          isolation: isolate;
+        }
+
+        /* BOOKMARK: CSS_GLOW_SECTIONS_PRINCIPALES */
+        .vision-layout::before {
+          content: none;
+        }
+
+        .expertise-section::before,
+        .collab-shell::before,
+        .contact-shell::before {
+          content: "";
+          position: absolute;
+          inset: -140px -80px;
+          z-index: -1;
+          pointer-events: none;
+          background: radial-gradient(circle at 50% 45%, rgba(70, 130, 255, 0.16) 0%, rgba(30, 80, 180, 0.1) 20%, rgba(5, 20, 60, 0.06) 34%, transparent 56%);
+          filter: blur(10px);
+        }
 
       .project-visual {
         width: 8.5rem;
@@ -909,11 +1331,11 @@
         }
 
         .project-card {
-          grid-template-columns: 1fr;
-          gap: 1rem;
-          padding: 1.1rem 0;
-          background: transparent;
-        }
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            padding: 1.1rem 1rem;
+            background: #02050c;
+          }
 
         .project-visual {
           width: min(8rem, 40vw);
@@ -927,15 +1349,11 @@
 
       .accent-violet {
         color: rgba(167, 139, 250, 0.75);
-      }
 
+      /* BOOKMARK: CSS_BLOC_VISION */
       /* ─── Vision section ─────────────────────────────────────── */
       .vision-ambient {
-        background: radial-gradient(
-          ellipse 58% 46% at 78% 38%,
-          rgba(0, 179, 188, 0.1) 0%,
-          transparent 88%
-        );
+        background: none;
       }
 
       .vision-layout {
@@ -948,29 +1366,48 @@
         grid-template-columns: 1fr 1fr;
         align-items: start;
         column-gap: 5.5rem;
+        padding: clamp(1.35rem, 2.8vw, 2.4rem);
+        background: rgba(0, 0, 0, 0.98);
+        border: 1px solid rgba(80, 220, 255, 0.35);
+        box-shadow: 0 0 35px rgba(80, 220, 255, 0.08);
       }
 
       .vision-column {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        min-height: 100%;
       }
 
       .vision-divider {
         position: absolute;
-        top: 0;
-        bottom: 0;
+        top: 8%;
+        bottom: 8%;
         left: 50%;
         width: 1px;
         transform: translateX(-0.5px);
-        background: linear-gradient(
-          180deg,
-          transparent 0%,
-          rgba(137, 236, 255, 0.1) 16%,
-          rgba(137, 236, 255, 0.14) 50%,
-          rgba(167, 139, 250, 0.1) 84%,
-          transparent 100%
+        background: rgba(152, 161, 53, 0.178);
+        box-shadow:
+          0 0 8px rgba(80, 220, 255, 0.25),
+          0 0 18px rgba(80, 220, 255, 0.12);
+        pointer-events: none;
+      }
+
+      .vision-divider::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 120px;
+        transform: translateX(-50%);
+        background: radial-gradient(
+          ellipse at center,
+          rgba(80, 220, 255, 0.08) 0%,
+          rgba(80, 220, 255, 0.03) 38%,
+          transparent 76%
         );
+        filter: blur(8px);
         pointer-events: none;
       }
 
@@ -989,7 +1426,7 @@
         font-size: clamp(2.35rem, 4.6vw, 4.25rem);
         line-height: 0.92;
         letter-spacing: -0.025em;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.86);
       }
 
       .vision-body-wrap {
@@ -1002,7 +1439,7 @@
         margin: 0;
         font-size: clamp(0.98rem, 1.3vw, 1.08rem);
         line-height: 1.82;
-        color: rgba(255, 255, 255, 0.44);
+        color: rgba(255, 255, 255, 0.86);
       }
 
       .vision-column-right {
@@ -1014,6 +1451,7 @@
           grid-template-columns: 1fr;
           row-gap: 2.8rem;
           column-gap: 0;
+          padding: 1.2rem 1rem;
         }
 
         .vision-divider {
@@ -1053,8 +1491,34 @@
         margin: 0 auto;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
+        gap: clamp(1.8rem, 3.6vw, 4rem);
+        align-items: start;
+        padding: clamp(1.35rem, 2.8vw, 2.4rem);
+        background: rgba(0, 0, 0, 0.98);
+        border: 1px solid rgba(80, 220, 255, 0.35);
+        box-shadow: 0 0 35px rgba(80, 220, 255, 0.08);
+      }
+
+      .expertise-section::before {
+        content: "";
+        position: absolute;
+        inset: -1.8rem -1.4rem;
+        z-index: -1;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 56% 52% at 50% 50%,
+          rgba(80, 220, 255, 0.05) 0%,
+          transparent 78%
+        );
+        filter: blur(10px);
+      }
+
+      .expertise-intro-card {
+        position: relative;
+        padding: 0;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
       }
 
       .expertise-title {
@@ -1068,9 +1532,20 @@
       }
 
       .expertise-list {
+        position: relative;
         list-style: none;
         padding: 0;
         margin: 0;
+      }
+
+      .expertise-list::before {
+        content: "";
+        position: absolute;
+        inset: -0.8rem -0.6rem;
+        pointer-events: none;
+        z-index: -1;
+        background: transparent;
+        filter: none;
       }
 
       .expertise-list li {
@@ -1102,7 +1577,8 @@
       @media (max-width: 768px) {
         .expertise-section {
           grid-template-columns: 1fr;
-          gap: 2rem;
+          gap: 1.6rem;
+          padding: 1.15rem 1rem;
         }
       }
 
@@ -1225,10 +1701,10 @@
       }
 
       .contact-title {
-        position: relative;
-        margin: 0;
-        font-size: clamp(3.4rem, 8vw, 7rem);
-        line-height: 0.9;
+          position: relative;
+          margin: 0;
+          font-size: clamp(2.8rem, 5vw, 4rem);
+          line-height: 0.9;
         letter-spacing: -0.03em;
         color: rgba(255, 255, 255, 0.86);
         text-wrap: balance;
@@ -1249,9 +1725,48 @@
           transparent 72%
         );
         filter: blur(26px);
-        pointer-events: none;
-        z-index: -1;
-      }
+          pointer-events: none;
+          z-index: -1;
+        }
+
+      .contact-copy {
+          width: min(100%, 38rem);
+          margin: 1.4rem auto 0;
+          font-size: 1rem;
+          line-height: 1.8;
+          color: rgba(255, 255, 255, 0.62);
+          text-wrap: balance;
+        }
+
+      .contact-cta {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.55rem;
+          margin-top: 1.5rem;
+          padding: 0.85rem 1.3rem;
+          border: 1px solid rgba(126, 180, 255, 0.22);
+          border-radius: 999px;
+          background: #02050c;
+          box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.025),
+            0 0 26px rgba(70, 130, 255, 0.07);
+          font-family: "Space Grotesk", sans-serif;
+          font-size: 0.78rem;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: rgba(255, 255, 255, 0.88);
+          cursor: pointer;
+          transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+        }
+
+      .contact-cta:hover {
+          transform: translateY(-2px);
+          border-color: rgba(137, 236, 255, 0.32);
+          box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.03),
+            0 0 30px rgba(70, 130, 255, 0.1);
+        }
 
       .contact-email {
         position: relative;
@@ -1340,8 +1855,22 @@
         }
 
         .contact-title {
-          font-size: clamp(2.8rem, 12vw, 4.4rem);
-        }
+            font-size: clamp(2.8rem, 5vw, 4rem);
+          }
+
+        .contact-copy {
+            margin-top: 1.15rem;
+            font-size: 0.94rem;
+            line-height: 1.7;
+          }
+
+        .contact-cta {
+            width: min(100%, 21rem);
+            margin-top: 1.2rem;
+            padding: 0.82rem 1.1rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.11em;
+          }
 
         .contact-email {
           font-size: 0.78rem;
@@ -1402,6 +1931,8 @@
           <div class="hero-copy">
             <!-- BOOKMARK: TEXTE_TITRE_HERO_3_CHROME -->
             <h1 class="title hero-title">Ph<span class="hero-title-chrome">3</span>yNyx.Studio</h1>
+            <!-- BOOKMARK: HERO_KEYWORDS -->
+            <p class="hero-keywords">Organisation · MVP · Interfaces</p>
             <p class="hero-subtitle">Sites web &amp; outils numériques pour entrepreneurs et travailleurs autonomes.</p>
             <nav class="hero-band">
               <a href="#who">À propos</a>
@@ -1451,17 +1982,16 @@
             Je suis développeur web junior basé au Québec.
           </p>
           <p>
-            Je conçois des sites vitrines, des landing pages et de petites
-            applications web simples et fonctionnelles.
+            Je crée des sites vitrines, des landing pages et de petites
+            applications simples, avec une approche concrète : construire vite,
+            rester simple, livrer quelque chose qui fonctionne.
           </p>
           <p>
-            J'utilise l'IA comme outil concret pour aller plus vite sans
-            sacrifier la qualité.
+            Depuis mars, j’ai publié Lun4rMood et Astr4l Design.
           </p>
           <p>
-            <span class="accent-violet"
-              >Des solutions simples, sans complexité inutile.</span
-            >
+            L’IA m’aide à aller plus vite, mais la vision, les choix et la
+            direction restent humains.
           </p>
         </div>
       </div>
@@ -1490,26 +2020,40 @@
           <span class="section-label block mb-10">Vision</span>
 
           <h2 class="title vision-heading-primary font-black tracking-tight">
-            Structure<br />&amp; Clarté.
+            Simple.<br />Utile.<br />Maîtrisé.
           </h2>
 
           <div class="vision-body-wrap">
             <p class="vision-body">
-              Pas de chaos. Pas de surcharge. Seulement ce qui compte.
+              Créer des outils qui améliorent le quotidien, tout en gardant les
+              choses simples, privées et maîtrisées.
             </p>
           </div>
         </div>
 
         <div class="vision-column vision-column-right">
           <h3 class="title vision-heading-secondary font-black tracking-tight">
-            Calme.<br />Évolutif.
+            Ma vision :
           </h3>
 
           <div class="vision-body-wrap">
             <p class="vision-body">
-              Un univers d'outils interconnectés, pensé pour évoluer dans le
-              temps.
+              Tu gardes le contrôle.
             </p>
+            <p class="vision-body mt-6">
+              Chaque projet est pensé local-first : tes données
+              t'appartiennent et restent accessibles hors ligne.
+            </p>
+            <p class="vision-body mt-6">
+              L'IA accélère le développement, mais ne décide jamais à ta place.
+            </p>
+            <div class="mt-8">
+              <a
+                href="services/service.html"
+                class="inline-flex items-center px-4 py-2 text-sm border border-white/20 rounded-lg hover:bg-white/10 transition-colors duration-300">
+                → En savoir plus
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -1529,7 +2073,7 @@
       <div class="arch-rule-v violet arch-rule-right-12"></div>
 
       <section class="expertise-section">
-        <div>
+        <div class="expertise-intro-card">
           <span class="section-label block mb-8">Expertise</span>
           <h2 class="title expertise-title tracking-tight">
             Ce que je construis
@@ -1579,16 +2123,25 @@
         aria-hidden="true"
         class="contact-floor absolute bottom-0 inset-x-0 h-64 pointer-events-none"></div>
 
-      <div class="contact-shell">
-        <span class="section-label block mb-12">Contact</span>
+        <div class="contact-shell">
+          <span class="section-label block mb-12">Contact</span>
 
-        <div class="contact-line-down" aria-hidden="true"></div>
+          <div class="contact-line-down" aria-hidden="true"></div>
 
-        <h2 class="title contact-title font-black tracking-tight">
-          Prenons<br />contact
-        </h2>
+          <h2 class="title contact-title font-black tracking-tight">
+            Tu as envie de<br />discuter d’un projet ?
+          </h2>
 
-        <div class="contact-line-up" aria-hidden="true"></div>
+          <p class="contact-copy">
+            Site vitrine, landing page, MVP ou interface simple : viens m’écrire,
+            on regarde ce qui est possible et on garde ça concret.
+          </p>
+
+          <button type="button" class="contact-cta" data-open-contact-flow>
+            Démarrer la discussion →
+          </button>
+
+          <div class="contact-line-up" aria-hidden="true"></div>
 
         <a href="mailto:ph3ynyx.studio@gmail.com" class="contact-email">
           ph3ynyx.studio@gmail.com
@@ -1596,6 +2149,14 @@
         <a href="tel:8736551001" class="contact-phone">873-655-1001</a>
       </div>
     </section>
+
+    <button
+      type="button"
+      id="contact-flow-trigger"
+      class="contact-flow-trigger"
+      aria-label="Ouvrir le contact rapide">
+      Contact
+    </button>
 
     <a href="#hero" class="back-cube" aria-label="Retour en haut">
       <span class="back-cube-glow" aria-hidden="true"></span>
@@ -1670,6 +2231,244 @@
         >Mentions Légales &; Confidentialité</a
       >
     </footer>
+    <div id="contact-flow-overlay" class="contact-flow-overlay" aria-hidden="true">
+      <div
+        class="contact-flow-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contact-flow-title">
+        <button
+          type="button"
+          id="contact-flow-close"
+          class="contact-flow-close"
+          aria-label="Fermer le contact rapide">
+          ×
+        </button>
+
+        <div
+          id="contact-flow-step-1"
+          class="contact-flow-step is-active"
+          data-contact-step="1">
+          <span class="contact-flow-label">Contact rapide</span>
+          <h2 id="contact-flow-title" class="contact-flow-title">
+            Ton besoin ?
+          </h2>
+          <div class="contact-flow-choices">
+            <button
+              type="button"
+              class="contact-flow-choice"
+              data-contact-need="Réfléchir le produit">
+              <span>
+                <span class="contact-flow-choice-title">Réfléchir le produit</span>
+                <span class="contact-flow-choice-subtitle">
+                  Je veux clarifier mon idée avant de commencer
+                </span>
+              </span>
+              <span class="contact-flow-choice-arrow" aria-hidden="true">→</span>
+            </button>
+            <button
+              type="button"
+              class="contact-flow-choice"
+              data-contact-need="Le construire">
+              <span>
+                <span class="contact-flow-choice-title">Le construire</span>
+                <span class="contact-flow-choice-subtitle">
+                  Je suis prêt à construire, guide-moi
+                </span>
+              </span>
+              <span class="contact-flow-choice-arrow" aria-hidden="true">→</span>
+            </button>
+            <button
+              type="button"
+              class="contact-flow-choice"
+              data-contact-need="Le rendre beau">
+              <span>
+                <span class="contact-flow-choice-title">Le rendre beau</span>
+                <span class="contact-flow-choice-subtitle">
+                  J'ai quelque chose, je veux l'optimiser ou le refaire
+                </span>
+              </span>
+              <span class="contact-flow-choice-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="contact-flow-step-2"
+          class="contact-flow-step"
+          data-contact-step="2">
+          <span class="contact-flow-label">Besoin confirmé</span>
+          <h2 class="contact-flow-title">Ton besoin</h2>
+          <p id="contact-flow-confirmed" class="contact-flow-confirmed"></p>
+          <p class="contact-flow-text">
+            Envoie-moi une description, je réponds en 48h
+          </p>
+          <div class="contact-flow-contact-list">
+            <div class="contact-flow-contact-item">
+              <span class="contact-flow-contact-label">Email</span>
+              <div class="contact-flow-contact-row">
+                <a
+                  href="mailto:ph3ynyx.studio@gmail.com"
+                  class="contact-flow-contact-link">
+                  ph3ynyx.studio@gmail.com
+                </a>
+                <button
+                  type="button"
+                  class="contact-flow-copy"
+                  data-copy-value="ph3ynyx.studio@gmail.com"
+                  data-copy-label="Email">
+                  Copier
+                </button>
+              </div>
+            </div>
+            <div class="contact-flow-contact-item">
+              <span class="contact-flow-contact-label">Téléphone</span>
+              <div class="contact-flow-contact-row">
+                <a href="tel:8736551001" class="contact-flow-contact-link">
+                  873-655-1001
+                </a>
+                <button
+                  type="button"
+                  class="contact-flow-copy"
+                  data-copy-value="873-655-1001"
+                  data-copy-label="Téléphone">
+                  Copier
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            id="contact-flow-copy-feedback"
+            class="contact-flow-copy-feedback"
+            aria-live="polite"></div>
+          <div class="contact-flow-footer">
+            <button
+              type="button"
+              id="contact-flow-back"
+              class="contact-flow-back">
+              Retour
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const contactFlowTrigger = document.getElementById("contact-flow-trigger");
+      const contactFlowOverlay = document.getElementById("contact-flow-overlay");
+      const contactFlowClose = document.getElementById("contact-flow-close");
+      const contactFlowStep1 = document.getElementById("contact-flow-step-1");
+      const contactFlowStep2 = document.getElementById("contact-flow-step-2");
+      const contactFlowConfirmed = document.getElementById(
+        "contact-flow-confirmed",
+      );
+      const contactFlowBack = document.getElementById("contact-flow-back");
+      const contactFlowChoices = document.querySelectorAll("[data-contact-need]");
+      const contactFlowCopyButtons = document.querySelectorAll("[data-copy-value]");
+      const contactFlowCopyFeedback = document.getElementById(
+        "contact-flow-copy-feedback",
+      );
+      let contactFlowCopyTimeout;
+
+      function syncContactFlowBodyLock() {
+        document.body.style.overflow = contactFlowOverlay.classList.contains("is-open")
+          ? "hidden"
+          : "";
+      }
+
+      function setContactFlowStep(step) {
+        const isStepOne = step === 1;
+        contactFlowStep1.classList.toggle("is-active", isStepOne);
+        contactFlowStep2.classList.toggle("is-active", !isStepOne);
+      }
+
+      function resetContactFlow() {
+        setContactFlowStep(1);
+        contactFlowConfirmed.textContent = "";
+        contactFlowCopyFeedback.textContent = "";
+        window.clearTimeout(contactFlowCopyTimeout);
+      }
+
+      function openContactFlow() {
+        resetContactFlow();
+        contactFlowOverlay.classList.add("is-open");
+        contactFlowOverlay.setAttribute("aria-hidden", "false");
+        syncContactFlowBodyLock();
+      }
+
+      function closeContactFlow() {
+        contactFlowOverlay.classList.remove("is-open");
+        contactFlowOverlay.setAttribute("aria-hidden", "true");
+        resetContactFlow();
+        syncContactFlowBodyLock();
+      }
+
+      async function copyContactValue(value, label) {
+        try {
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(value);
+          } else {
+            const fallbackInput = document.createElement("textarea");
+            fallbackInput.value = value;
+            document.body.appendChild(fallbackInput);
+            fallbackInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(fallbackInput);
+          }
+
+          contactFlowCopyFeedback.textContent = `${label} copié`;
+        } catch {
+          contactFlowCopyFeedback.textContent = `Impossible de copier ${label.toLowerCase()}`;
+        }
+
+        window.clearTimeout(contactFlowCopyTimeout);
+        contactFlowCopyTimeout = window.setTimeout(() => {
+          contactFlowCopyFeedback.textContent = "";
+        }, 1800);
+      }
+
+      document
+        .querySelectorAll("#contact-flow-trigger, [data-open-contact-flow]")
+        .forEach((trigger) => {
+          trigger.addEventListener("click", openContactFlow);
+        });
+      contactFlowClose.addEventListener("click", closeContactFlow);
+      contactFlowBack.addEventListener("click", () => {
+        setContactFlowStep(1);
+        contactFlowCopyFeedback.textContent = "";
+      });
+
+      contactFlowChoices.forEach((choice) => {
+        choice.addEventListener("click", () => {
+          contactFlowConfirmed.textContent = choice.dataset.contactNeed || "";
+          contactFlowCopyFeedback.textContent = "";
+          setContactFlowStep(2);
+        });
+      });
+
+      contactFlowCopyButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          copyContactValue(
+            button.dataset.copyValue || "",
+            button.dataset.copyLabel || "Contact",
+          );
+        });
+      });
+
+      contactFlowOverlay.addEventListener("click", (event) => {
+        if (event.target === contactFlowOverlay) {
+          closeContactFlow();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (
+          event.key === "Escape" &&
+          contactFlowOverlay.classList.contains("is-open")
+        ) {
+          closeContactFlow();
+        }
+      });
+    </script>
     <script type="module" src="asset/scripts/hero-cube.js"></script>
   </body>
 </html>
