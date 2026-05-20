@@ -1135,6 +1135,7 @@
         padding: 1.25rem 1rem;
         width: 100%;
         height: 100%;
+        min-height: 15rem;
       }
 
       #services .project-description {
@@ -1160,13 +1161,20 @@
         #services .project-list {
           grid-template-columns: 1fr;
         }
+
+        #services .project-card {
+          min-height: 12rem;
+        }
       }
 
       /* BOOKMARK: CSS_GRILLE_PROJETS */
       #projets .project-list {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1.5rem;
+        width: 90%;
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
       }
 
       #projets .project-card + .project-card {
@@ -1174,11 +1182,16 @@
       }
 
       #projets .project-card {
+        flex: 1 1 300px;
         height: 100%;
       }
 
       #projets .project-copy {
         height: 100%;
+        min-width: 0;
+        width: 100%;
+        padding-inline: 0.4rem;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -1187,6 +1200,17 @@
 
       #projets .project-action-row {
         margin-top: auto;
+        max-width: 100%;
+        padding-right: 0.4rem;
+        box-sizing: border-box;
+      }
+
+      #projets .project-status,
+      #projets .project-action-button {
+        max-width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        white-space: normal;
       }
 
       @media (min-width: 1100px) {
@@ -1359,7 +1383,9 @@
 
       .project-detail-card {
         position: relative;
-        width: min(92vw, 42rem);
+        width: 90%;
+        max-width: 760px;
+        margin: 0 auto;
         padding: 1.6rem 1.4rem 1.45rem;
         border: 1px solid rgba(255, 255, 255, 0.14);
         border-radius: 1rem;
@@ -2429,14 +2455,12 @@
           <article class="project-card">
             <div class="project-copy">
               <div class="project-copy-head">
-                <h3 class="project-name">Réfléchir le produit ensemble</h3>
+                <h3 class="project-name">💬 Réfléchir le produit ensemble</h3>
               </div>
               <p class="project-description">
-                Tu as une idée, mais c'est encore brouillon. On clarifie
-                ensemble : c'est quoi vraiment ton besoin ? Pourquoi ? Qu'est-ce
-                qui compte vraiment ? Je te propose une structure, des
-                priorités, une architecture simple. À la fin, tu sais exactement
-                quoi construire — et pourquoi.
+                Tu as une idée floue ? On définit ton besoin réel et tes vraies
+                priorités. Résultat : Un plan simple, une architecture logique
+                et une feuille de route claire.
               </p>
             </div>
           </article>
@@ -2444,13 +2468,12 @@
           <article class="project-card">
             <div class="project-copy">
               <div class="project-copy-head">
-                <h3 class="project-name">Le construire</h3>
+                <h3 class="project-name">🛠️ Le construire</h3>
               </div>
               <p class="project-description">
-                L'idée est claire, maintenant on la rend réelle. Je crée une
-                première version fonctionnelle, locale-first si possible, sans
-                aucun superflu. Quelque chose que tu peux utiliser dès demain,
-                qui marche, qui est stable, et que tu maîtrises complètement.
+                On passe du plan à la réalité. J'assemble le code et la logique
+                à vitesse grand V grâce à l'IA. Résultat : Un MVP stable et
+                performant (avec option local-first sécurisée).
               </p>
             </div>
           </article>
@@ -2458,13 +2481,12 @@
           <article class="project-card">
             <div class="project-copy">
               <div class="project-copy-head">
-                <h3 class="project-name">Le rendre beau et simple</h3>
+                <h3 class="project-name">✨ Le rendre beau et simple</h3>
               </div>
               <p class="project-description">
-                C'est fonctionnel mais ça manque de personnalité ou de clarté ?
-                Je crée une interface propre, une expérience agréable à
-                utiliser, un design qui te représente. Tout cohérent, tout
-                pensé, zéro complexité inutile.
+                Je combine design moderne et accessibilité pour garantir une
+                navigation fluide sur tous les écrans. Résultat : Un visuel pro
+                adapté à ton image (en mode clair ou sombre).
               </p>
             </div>
           </article>

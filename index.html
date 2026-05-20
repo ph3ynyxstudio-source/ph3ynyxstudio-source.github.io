@@ -513,9 +513,29 @@
         color: rgba(#eaf4ff);
       }
 
+      .hero-keywords {
+        margin-top: 0.9rem;
+        margin-bottom: 0.2rem;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(0.92rem, 2.2vw, 1.16rem);
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.78);
+        text-wrap: balance;
+      }
+
       @media (max-width: 768px) {
         .hero-title {
           font-size: clamp(2.5rem, 8vw, 3rem);
+        }
+
+        .hero-keywords {
+          margin-top: 0.7rem;
+          margin-bottom: 0.15rem;
+          font-size: clamp(0.82rem, 3.6vw, 0.98rem);
+          letter-spacing: 0.1em;
+          line-height: 1.45;
+          padding: 0 1rem;
         }
       }
 
@@ -1402,10 +1422,12 @@
           <div class="hero-copy">
             <!-- BOOKMARK: TEXTE_TITRE_HERO_3_CHROME -->
             <h1 class="title hero-title">Ph<span class="hero-title-chrome">3</span>yNyx.Studio</h1>
+            <!-- BOOKMARK: HERO_KEYWORDS -->
+            <p class="hero-keywords">Organisation · MVP · Interfaces</p>
             <p class="hero-subtitle">Sites web &amp; outils numériques pour entrepreneurs et travailleurs autonomes.</p>
             <nav class="hero-band">
               <a href="#who">À propos</a>
-              <a href="/services/service.html">Services</a>
+              <a href="/services/index.html">Services</a>
               <a href="#vision">Vision</a>
               <a href="#contact">Contact</a>
             </nav>
@@ -1560,7 +1582,7 @@
       <div class="collab-shell">
         <p class="collab-body">
           Tu veux voir ce que je construis ?
-          <a href="services/service.html#projets">→ Voir mes projets</a>
+          <a href="services/index.html#projets">→ Voir mes projets</a>
         </p>
       </div>
     </section>
