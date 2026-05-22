@@ -4,6 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ph3yNyx.Studio</title>
+    <meta property="og:title" content="PH3YNYX.Studio" />
+    <meta
+      property="og:description"
+      content="Sites web & outils numériques. Comprendre. Structurer. Construire." />
+    <meta
+      property="og:image"
+      content="https://ph3ynyxstudio-source.github.io/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ph3ynyxstudio-source.github.io/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PH3YNYX.Studio" />
+    <meta
+      name="twitter:description"
+      content="Sites web & outils numériques. Comprendre. Structurer. Construire." />
+    <meta
+      name="twitter:image"
+      content="https://ph3ynyxstudio-source.github.io/og-image.png" />
     <link
       rel="icon"
       type="image/png"
@@ -1653,6 +1672,21 @@
         }
       }
 
+      @media (max-width: 768px) {
+        .who-card,
+        .vision-layout,
+        .expertise-section,
+        .contact-shell {
+          background: rgba(7, 11, 24, 0.94);
+          border: 1px solid rgba(232, 234, 246, 0.38);
+          box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.1),
+            0 0 16px rgba(0, 229, 255, 0.18),
+            0 0 42px rgba(0, 229, 255, 0.1),
+            0 0 70px rgba(123, 97, 255, 0.08);
+        }
+      }
+
       /* ─── Contact section ────────────────────────────────────── */
       /* BOOKMARK: CSS_BLOC_CONTACT */
       .contact-floor {
@@ -1970,16 +2004,16 @@
 
         <div class="who-body space-y-6 text-white/70 leading-loose">
           <p>
-            J’ai commencé le web parce que j’avais besoin d’outils utiles.
+            Je crée des interfaces simples et des outils utiles pour mobile et
+            PC.
           </p>
           <p>
-            Aujourd’hui, je crée des sites, interfaces et outils numériques
-            simples, pensés pour être clairs, agréables et faciles à utiliser.
+            L’IA peut accélérer le travail, mais la vision, les choix et la
+            direction restent humains.
           </p>
           <p>
-            L’IA m’aide à aller plus vite, mais la direction reste humaine :
-            comprendre le besoin, faire les bons choix et construire quelque
-            chose d’utile.
+            Objectif : concevoir des outils personnalisés, pensés pour vos
+            besoins réels.
           </p>
           <button
             type="button"
@@ -2072,7 +2106,7 @@
           <li>Outils utiles et concrets.</li>
           <li>Systèmes organisés et durables.</li>
           <li>Construire simple aujourd’hui, évoluer demain.</li>
-          <li>MVP rapides pour passer de l’idée au produit.</li>
+          <li>Premières versions fonctionnelles pour passer de l’idée au produit.</li>
         </ul>
         <p class="expertise-action">
           Passer des idées au concret
@@ -2319,8 +2353,8 @@
             doivent pas faire perdre le contrôle du projet.
           </p>
           <p>
-            Quand c’est pertinent, je favorise une approche local-first : les
-            données restent d’abord sous contrôle, sur l’appareil, avant de
+            Quand c’est pertinent, je favorise une approche où les données
+            restent sous votre contrôle, d’abord sur l’appareil, avant de
             dépendre d’un service externe.
           </p>
         </div>
