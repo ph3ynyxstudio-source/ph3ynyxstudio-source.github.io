@@ -39,12 +39,15 @@
       /* BOOKMARK: CSS_JETONS_RACINE */
       :root {
         color-scheme: dark;
-        --bg-black: #020304;
-        --bg-deep: #071014;
-        --glass: rgba(8, 12, 16, 0.72);
-        --line-soft: rgba(129, 232, 255, 0.2);
-        --cyan: #89ecff;
-        --violet: #a78bfa;
+        --bg-black: #000000;
+        --bg-deep: #000000;
+        --glass: rgba(63, 194, 196, 0.61);
+        --line-soft: #387275;
+        --cyan: #0d9364a1;
+        --violet: #689ab2b8;
+        --accent-core: #08474b;
+        --accent-core-rgb: 0, 255, 255;
+        --accent-glow-rgb: 137, 236, 255;
       }
 
       html,
@@ -57,7 +60,7 @@
         background:
           radial-gradient(
             circle at top,
-            rgba(103, 232, 249, 0.22),
+            rgba(48, 68, 71, 0.22),
             transparent 34%
           ),
           linear-gradient(180deg, #0f1635 0%, #0a1024 45%, #070b18 100%);
@@ -1021,6 +1024,12 @@
         transform: translateY(5.4rem);
       }
 
+      @media (min-width: 769px) {
+        .hero-copy {
+          padding-bottom: 3.5rem;
+        }
+      }
+
       .hero-title {
         margin: 0;
         display: inline-flex;
@@ -1038,13 +1047,19 @@
 
       /* BOOKMARK: ZONE_TITRE_HERO_3_CHROME */
       .hero-title-chrome {
-  color: #213f47;
+  color: var(--accent-core);
   text-shadow:
     0 0 4px rgba(255, 255, 255, 0.75),
-    0 0 12px rgba(137, 236, 255, 0.55),
-    0 0 22px rgba(58, 106, 116, 0.65),
+    0 0 12px rgba(var(--accent-glow-rgb), 0.55),
+    0 0 22px rgba(var(--accent-core-rgb), 0.65),
     0 1px 0 rgba(255, 255, 255, 0.7);
 }
+
+      .hero-title-symbol {
+        color: rgba(8, 71, 75, 0.78);
+        -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.95);
+        text-shadow: none;
+      }
 
       .hero-subtitle {
         margin-top: 0.45rem;
@@ -1349,7 +1364,7 @@
       /* ─── Body text ─────────────────────────────────────────── */
       .who-body {
         font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-        border-left: 1px solid rgba(137, 236, 255, 0.1);
+        border-left: 1px solid rgba(var(--accent-glow-rgb), 0.1);
         padding-left: 2rem;
       }
 
@@ -1678,11 +1693,11 @@
         .expertise-section,
         .contact-shell {
           background: rgba(7, 11, 24, 0.94);
-          border: 1px solid rgba(232, 234, 246, 0.38);
+          border: 1px solid rgba(var(--accent-glow-rgb), 0.34);
           box-shadow:
             0 0 0 1px rgba(255, 255, 255, 0.1),
-            0 0 16px rgba(0, 229, 255, 0.18),
-            0 0 42px rgba(0, 229, 255, 0.1),
+            0 0 16px rgba(var(--accent-glow-rgb), 0.16),
+            0 0 42px rgba(var(--accent-glow-rgb), 0.09),
             0 0 70px rgba(123, 97, 255, 0.08);
         }
       }
@@ -1948,7 +1963,7 @@
 
           <div class="hero-copy">
             <!-- BOOKMARK: TEXTE_TITRE_HERO_3_CHROME -->
-            <h1 class="title hero-title">Ph<span class="hero-title-chrome">3</span>yNyx.Studio</h1>
+            <h1 class="title hero-title"><span class="hero-title-symbol">⟐</span>Ph<span class="hero-title-chrome">3</span>y&nbsp;&nbsp;Nyx<span class="hero-title-symbol">⟐</span></h1>
             <!-- BOOKMARK: HERO_KEYWORDS -->
             <p class="hero-keywords">Code · Produit · Design</p>
             <p class="hero-subtitle">Sites web &amp; outils numériques pour entrepreneurs et travailleurs autonomes.</p>

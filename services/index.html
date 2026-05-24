@@ -28,6 +28,9 @@
         --line-soft: rgba(129, 232, 255, 0.2);
         --cyan: #89ecff;
         --violet: #a78bfa;
+        --accent-core: #08474b;
+        --accent-core-rgb: 0, 255, 255;
+        --accent-glow-rgb: 137, 236, 255;
       }
 
       html,
@@ -604,12 +607,18 @@
 
       /* BOOKMARK: ZONE_TITRE_HERO_3_CHROME */
       .hero-title-chrome {
-        color: #213f47;
+        color: var(--accent-core);
         text-shadow:
           0 0 4px rgba(255, 255, 255, 0.75),
-          0 0 12px rgba(137, 236, 255, 0.55),
-          0 0 22px rgba(58, 106, 116, 0.65),
+          0 0 12px rgba(var(--accent-glow-rgb), 0.55),
+          0 0 22px rgba(var(--accent-core-rgb), 0.65),
           0 1px 0 rgba(255, 255, 255, 0.7);
+      }
+
+      .hero-title-symbol {
+        color: rgba(8, 71, 75, 0.78);
+        -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.95);
+        text-shadow: none;
       }
 
       .hero-subtitle {
@@ -2421,9 +2430,7 @@
 
           <div class="hero-copy">
             <!-- BOOKMARK: TEXTE_TITRE_HERO_3_CHROME -->
-            <h1 class="title hero-title">
-              Ph<span class="hero-title-chrome">3</span>yNyx.Studio
-            </h1>
+            <h1 class="title hero-title"><span class="hero-title-symbol">⟐</span>Ph<span class="hero-title-chrome">3</span>y&nbsp;&nbsp;Nyx<span class="hero-title-symbol">⟐</span></h1>
             <!-- BOOKMARK: HERO_KEYWORDS -->
             <p class="hero-keywords">Code · Produit · Design</p>
             <p class="hero-subtitle">
